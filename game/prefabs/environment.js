@@ -17,6 +17,8 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
   this.foreground.autoScroll(-90, 0);
 
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
+  this.foreground.body.allowGravity = false;
+  this.foreground.body.immovable = true;
 };
 
 Environment.Type = {
@@ -33,6 +35,12 @@ Environment.create = function(game, type) {
       return new Environment(game, 0, 360, 960, 360, 'pink_stripes', 'blue_clouds', 'field');
       break;
   }
+}
+
+Environment.prototype = {};
+
+Environment.prototype.update = function() {
+  
 }
 
 module.exports = Environment;

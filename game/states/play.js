@@ -8,16 +8,23 @@ function Play() {}
 Play.prototype = {
 
   create: function() {
+
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.game.physics.arcade.gravity.y = 500;
+
     this.top = Environment.create(this.game, Environment.Type.TOP);
     this.bottom = Environment.create(this.game, Environment.Type.BOTTOM);
 
-    this.robot = this.game.add.existing(new Actor(this.game, 20, 240, 0, 'robot'));
-    this.kid = this.game.add.existing(new Actor(this.game, 20, 600, 0, 'kid'));
+    this.robot = this.game.add.existing(new Actor(this.game, 20, 0, 0, 'robot'));
+    this.game.physics.enable(this.robot, Phaser.Physics.ARCADE);
+
+    this.kid = this.game.add.existing(new Actor(this.game, 20, 360, 0, 'kid'));
+    this.game.physics.enable(this.kid, Phaser.Physics.ARCADE);
   },
 
   update: function() {
-
+    this.game.physics.arcade.collide(this.top.foreground, this.robot);
+    this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
   },
 
   clickListener: function() {
