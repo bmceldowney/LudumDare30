@@ -16,6 +16,8 @@ Play.prototype = {
     this.bottom = Environment.create(this.game, Environment.Type.BOTTOM);
 
     this.robot = this.game.add.existing(new Actor(this.game, 20, 0, 0, 'robot'));
+      this.robot.animations.add('walk');
+      this.robot.animations.play('walk', 12, true);
     this.game.physics.enable(this.robot, Phaser.Physics.ARCADE);
 
     this.kid = this.game.add.existing(new Actor(this.game, 20, 360, 0, 'kid'));
