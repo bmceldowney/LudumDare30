@@ -1,0 +1,52 @@
+<NotepadPlus>
+    <Project name="LudumDare30">
+        <Folder name="assets">
+            <File name="assets\preloader.gif" />
+            <File name="assets\yeoman-logo.png" />
+        </Folder>
+        <Folder name="css">
+            <File name="css\styles.css" />
+        </Folder>
+        <Folder name="dist">
+            <Folder name="assets">
+                <File name="dist\assets\preloader.gif" />
+                <File name="dist\assets\yeoman-logo.png" />
+            </Folder>
+            <Folder name="css">
+                <File name="dist\css\styles.css" />
+            </Folder>
+            <Folder name="js">
+                <File name="dist\js\game.js" />
+                <File name="dist\js\phaser.js" />
+                <File name="dist\js\phaser.min.js" />
+            </Folder>
+            <File name="dist\index.html" />
+        </Folder>
+        <Folder name="game">
+            <Folder name="prefabs">
+                <File name="game\prefabs\actor.js" />
+            </Folder>
+            <Folder name="states">
+                <File name="game\states\boot.js" />
+                <File name="game\states\gameover.js" />
+                <File name="game\states\menu.js" />
+                <File name="game\states\play.js" />
+                <File name="game\states\preload.js" />
+            </Folder>
+            <File name="game\main.js" />
+        </Folder>
+        <Folder name="templates">
+            <File name="templates\_main.js.tpl" />
+        </Folder>
+        <File name=".editorconfig" />
+        <File name=".gitignore" />
+        <File name=".jshintrc" />
+        <File name="bower.json" />
+        <File name="config.json" />
+        <File name="Gruntfile.js" />
+        <File name="index.html" />
+        <File name="npm-debug.log" />
+        <File name="package.json" />
+        <File name="README.md" />
+    </Project>
+</NotepadPlus>
