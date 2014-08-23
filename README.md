@@ -24,6 +24,7 @@ v0.10.29
 ```
 
 #### Grunt and Bower
+Build and client-side package libraries. Necessary for winners.
 ```bash
 $ sudo npm install -g grunt-cli bower
 ```
