@@ -25,6 +25,8 @@ Play.prototype = {
   },
 
   update: function() {
+    this.top.update();
+    this.bottom.update();
     this.game.physics.arcade.collide(this.top.foreground, this.robot);
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
   },
