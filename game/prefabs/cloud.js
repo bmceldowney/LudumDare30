@@ -4,6 +4,7 @@ var Cloud = function(game, x, y, type) {
     Phaser.Sprite.call(this, game, x, y, 'blue_clouds');
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.allowGravity = false;
+    console.log(this.body);
     this.setType(type);
 };
 

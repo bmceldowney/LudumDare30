@@ -48,21 +48,15 @@ Environment.create = function(game, type) {
 }
 
 Environment.prototype = {};
-
 Environment.prototype.update = function() {
 
-  if ((Math.random() * 100) << 0 == 42) {
+    if (Rnd.integerInRange(0, 500) == 42) {
 
-    var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 40));
+      var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 40));
 
-    cloud.setType(Cloud.randomType());
-    cloud.body.velocity = new Phaser.Point(Rnd.realInRange(-60, -65), 0);
-    this.game.physics.arcade.collide(cloud, this.clouds, function(one, two) {
-      if (one !== two) {
-        one.kill();
-      }
-    });
-  }
+      cloud.setType(Cloud.randomType());
+      cloud.body.velocity = new Phaser.Point(Rnd.realInRange(-60, -65), 0);
+    }
 }
 
 module.exports = Environment;
