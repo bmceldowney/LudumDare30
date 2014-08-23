@@ -19,7 +19,7 @@ Preload.prototype = {
     this.load.image('street', 'assets/frg_street.png');
     this.load.image('field', 'assets/frg_field.png');
     this.load.image('robot', 'assets/p1_jump.png');
-    this.load.image('kid', 'assets/p2_jump.png');
+    this.load.spritesheet('kid', 'assets/stormie_walk.png',61,120,8);
   },
   create: function() {
     this.asset.cropEnabled = false;
