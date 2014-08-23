@@ -12,6 +12,11 @@ graphics.
 How to build it
 ---------------
 
+### You will need
+**Grunt:** `npm install -g grunt-cli`  
+**Bower:** `npm install -g bower`
+
+### Then...
 ```bash
 $ git clone https://github.com/ninjascribble/LudumDare30.git
 $ cd LudumDare30
