@@ -1,7 +1,7 @@
 'use strict';
 
-var Actor = function(game, x, y, frame) {
-  Phaser.Sprite.call(this, game, x, y, 'actor', frame);
+var Actor = function(game, x, y, frame, type) {
+  Phaser.Sprite.call(this, game, x, y, type, frame);
 
   // initialize your prefab here
   

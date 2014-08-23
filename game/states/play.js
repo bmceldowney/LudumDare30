@@ -1,5 +1,7 @@
   'use strict';
-
+  
+  var Actor = require('../prefabs/actor.js');
+  
   function Play() {
   }
 
@@ -12,13 +14,15 @@
       this.top = {
         background: this.game.add.tileSprite(0, 0, 960, 360, 'orange_stripes'),
         midground: this.game.add.tileSprite(0, 0, 960, 360, 'black_clouds'),
-        foreground: this.game.add.tileSprite(0, 283, 960, 77, 'street')
+        foreground: this.game.add.tileSprite(0, 283, 960, 77, 'street'),
+        robot: this.game.add.existing(new Actor(this.game, 20, 240, 0, 'robot'))
       };
 
       this.bottom = {
         background: this.game.add.tileSprite(0, 360, 960, 360, 'pink_stripes'),
         midground: this.game.add.tileSprite(0, 360, 960, 360, 'blue_clouds'),
-        foreground: this.game.add.tileSprite(0, 643, 960, 77, 'field')
+        foreground: this.game.add.tileSprite(0, 643, 960, 77, 'field'),
+        kid: this.game.add.existing(new Actor(this.game, 20, 600, 0, 'kid'))
       };
 
       this.top.background.autoScroll(-35, 0);

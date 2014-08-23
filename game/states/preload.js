@@ -18,13 +18,17 @@ Preload.prototype = {
     this.load.image('black_clouds', 'assets/bkg_black-clouds.png');
     this.load.image('street', 'assets/frg_street.png');
     this.load.image('field', 'assets/frg_field.png');
+    this.load.image('robot', 'assets/p1_jump.png');
+    this.load.image('kid', 'assets/p2_jump.png');
   },
   create: function() {
     this.asset.cropEnabled = false;
   },
   update: function() {
     if(!!this.ready) {
-      this.game.state.start('menu');
+      // this.game.state.start('menu');
+      this.game.state.start('play');
+
     }
   },
   onLoadComplete: function() {
