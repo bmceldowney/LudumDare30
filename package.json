@@ -1,6 +1,9 @@
 {
   "name": "ludum-dare-30",
   "private": true,
+  "scripts": {
+    "postinstall": "bower install"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "bower": "~0.9.2",
