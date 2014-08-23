@@ -12,8 +12,8 @@ Preload.prototype = {
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
-    this.load.image('yeoman', 'assets/yeoman-logo.png');
-
+    this.load.image('pink_stripes', 'assets/bkg_pink-stripes.png');
+    this.load.image('orange_stripes', 'assets/bkg_orange-stripes.png');
   },
   create: function() {
     this.asset.cropEnabled = false;

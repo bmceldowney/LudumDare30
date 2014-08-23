@@ -1,23 +1,30 @@
-
   'use strict';
-  function Play() {}
-  Play.prototype = {
-    create: function() {
-      this.game.physics.startSystem(Phaser.Physics.ARCADE);
-      this.sprite = this.game.add.sprite(this.game.width/2, this.game.height/2, 'yeoman');
-      this.sprite.inputEnabled = true;
-      
-      this.game.physics.arcade.enable(this.sprite);
-      this.sprite.body.collideWorldBounds = true;
-      this.sprite.body.bounce.setTo(1,1);
-      this.sprite.body.velocity.x = this.game.rnd.integerInRange(-500,500);
-      this.sprite.body.velocity.y = this.game.rnd.integerInRange(-500,500);
 
-      this.sprite.events.onInputDown.add(this.clickListener, this);
+  function Play() {
+  }
+
+  Play.prototype = {
+
+    create: function() {
+
+      this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+      this.top = {
+        background: this.game.add.tileSprite(0,0,960,360,'orange_stripes')
+      };
+
+      this.bottom = {
+        background: this.game.add.tileSprite(0,360,960,360,'pink_stripes')
+      };
+
+      this.top.background.autoScroll(-60, 0);
+      this.bottom.background.autoScroll(-60, 0);
     },
+
     update: function() {
 
     },
+
     clickListener: function() {
       this.game.state.start('gameover');
     }
