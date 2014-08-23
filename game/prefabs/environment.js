@@ -10,7 +10,7 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
 
   this.background = this.game.add.tileSprite(this.x, this.y, this.w, this.h, back);
   this.midground = this.game.add.tileSprite(this.x, this.y, this.w, this.h, mid);
-  this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 77, this.w, 77, fore);
+  this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 40, this.w, 40, fore);
 
   this.background.autoScroll(-35, 0);
   this.midground.autoScroll(-60, 0);
