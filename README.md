@@ -13,8 +13,14 @@ How to build it
 ---------------
 
 ### You will need
-**Grunt:** `npm install -g grunt-cli`  
-**Bower:** `npm install -g bower`
+
+#### NodeJS >= 0.10.x
+[Node Version Manager](creationix/nvm) is highly recommended for switching between versions.
+
+#### Grunt and Bower
+```bash
+$ sudo npm install -g grunt-cli bower
+```
 
 ### Then...
 ```bash
