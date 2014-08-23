@@ -28,7 +28,7 @@ and start a **livereload** service that will watch for changes. Pretty sweet!
 
 Contributors
 ------------
-**Ben McEldowney:** @bmceldowney
-**Benjamin Bostow:** @bbostow
-**Scott Grogan:** @ninjascribble
+**Ben McEldowney:** https://github.com/bmceldowney  
+**Benjamin Bostow:** https://github.com/bbostow  
+**Scott Grogan:** https://github.com/ninjascribble  
 **Jessica Eggerth:** www.linkedin.com/in/jessicaeggerth
