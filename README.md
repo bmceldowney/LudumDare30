@@ -16,6 +16,12 @@ How to build it
 
 #### NodeJS >= 0.10.x
 [Node Version Manager](creationix/nvm) is highly recommended for switching between versions.
+```bash
+$ curl https://raw.githubusercontent.com/creationix/nvm/v0.13.1/install.sh | bash
+$ nvm install 0.10
+$ nvm use 0.10ode -v
+v0.10.29
+```
 
 #### Grunt and Bower
 ```bash
