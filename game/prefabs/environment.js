@@ -44,7 +44,6 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.hud = new Hud(this.game, this.x + 40, this.y + this.h - 26);
 
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
-  this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.generateSadHappy, this);
 
   this.generateSadHappy();
 };
@@ -83,8 +82,8 @@ Environment.prototype.generateCloud = function() {
 
 Environment.prototype.generateSadHappy = function() {
   var sadhappy = this.sadhappies.spawn(this.w - 45, Rnd.realInRange(this.y, this.y + this.h - 120));
-
   sadhappy.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
+  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.realInRange(1,3), this.generateSadHappy, this);
 }
 
 Environment.prototype.generateOuchy = function () {
