@@ -23,14 +23,24 @@
             <File name="dist\index.html" />
         </Folder>
         <Folder name="game">
+            <Folder name="groups">
+                <File name="game\groups\group.js" />
+            </Folder>
             <Folder name="prefabs">
                 <File name="game\prefabs\actor.js" />
                 <File name="game\prefabs\cloud.js" />
                 <File name="game\prefabs\environment.js" />
+                <File name="game\prefabs\rocket.js" />
+                <File name="game\prefabs\hud.js" />
+                <File name="game\prefabs\ouchy.js" />
+                <File name="game\prefabs\rock.js" />
+                <File name="game\prefabs\sadhappy.js" />
             </Folder>
             <Folder name="services">
                 <File name="game\services\player.js" />
                 <File name="game\services\world.js" />
+                <File name="game\services\random.js" />
+                <File name="game\services\scorekeeper.js" />
             </Folder>
             <Folder name="states">
                 <File name="game\states\boot.js" />
