@@ -9,14 +9,22 @@ var Actor = function(game, x, y, frame, type) {
   this.animations.add('ouch', [8,9]);
 
   this.body.collideWorldBounds = true;
-  this.anchor.setTo(.5, 1);
   this.speed = 100;
   this.jumpForce = -600;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
 
-  this.body.width = 16;
-  this.body.offset.x = 0;
+  if (type == 'kid') {
+    this.anchor.setTo(.3, 1);
+    this.body.width = 32;
+    this.body.offset.x = -8;
+  }
+  else if (type == 'robot') {
+    this.anchor.setTo(.4, 1);
+    this.body.width = 32;
+    this.body.offset.x = -4;
+    this.body.height = 120;
+  }
 };
 
 Actor.prototype = Object.create(Phaser.Sprite.prototype);
@@ -26,6 +34,7 @@ Actor.prototype.walkRight = function() {
   if (this.isOuched) return;
 
   this.scale.x = 1;
+  this.body.facing = Phaser.RIGHT;
   this.body.velocity.x += this.speed + Math.abs(Environment.FOREGROUND_SPEED);
   this.animations.play('walk', 12, true);
 }
@@ -34,6 +43,7 @@ Actor.prototype.walkLeft = function() {
   if (this.isOuched) return;
 
   this.scale.x = -1;
+  this.body.facing = Phaser.LEFT;
   this.body.velocity.x -= (this.speed / 2) + Math.abs(Environment.FOREGROUND_SPEED);
   this.animations.play('walk', 12, true);
 }
@@ -65,6 +75,7 @@ Actor.prototype.update = function () {
     this.stopWalking();
   }
 
+  // this.game.debug.body(this);
 }
 
 Actor.prototype.ouch = function () {
