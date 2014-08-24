@@ -5,7 +5,6 @@ var KEY = 'ouchies';
 var Ouchy = function(game, x, y, frame) {
   Phaser.Sprite.call(this, game, x, y, KEY, frame);
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
-  this.checkWorldBounds = true;
   this.outOfBoundsKill = true;
   this.body.allowGravity = false;
   this.setType();

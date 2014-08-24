@@ -54,9 +54,11 @@ Play.prototype = {
 
     this.game.physics.arcade.overlap(this.top.sadhappies, this.rocket, function(rocket, sadhappy) {
       this.rocketEsplode(null, rocket);
-      sadhappy.makeSuperCool();
-      ScoreKeeper.robot += 10;
-      this.bottom.generateOuchy();
+      if (sadhappy.superCool == false) {
+        sadhappy.makeSuperCool();
+        ScoreKeeper.robot += 10;
+        this.bottom.generateOuchy();
+      }
     }, null, this);
     
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
