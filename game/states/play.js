@@ -5,8 +5,12 @@ var Actor = require('../prefabs/actor.js');
 var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
 var speed = require('../services/gameSpeed');
+<<<<<<< HEAD
 var music = require('../services/music');
 var GRAVITY = 2000;
+=======
+var GRAVITY = 6000;
+>>>>>>> tightening up some movement mechanics
 
 function Play() {}
 
@@ -16,6 +20,7 @@ Play.prototype = {
 
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = GRAVITY;
+    speed.speedFactor = 1;
 
     this.top = Environment.create(this.game, Environment.Type.TOP);
     this.bottom = Environment.create(this.game, Environment.Type.BOTTOM);
@@ -47,16 +52,16 @@ Play.prototype = {
     this.bottom.hud.lives = this.kid.health;
     this.bottom.update();
 
-    this.robot.body.velocity.x = speed.getSpeed();
+    this.robot.body.velocity.x = 0;
     this.game.physics.arcade.collide(this.top.foreground, this.robot);
     this.game.physics.arcade.collide(this.top.rocks, this.robot, function(sprite, rock) {
-      sprite.body.velocity.x = 0;
+      sprite.body.velocity.x = -1 * speed.getSpeed();
     });
 
-    this.kid.body.velocity.x = speed.getSpeed();
+    this.kid.body.velocity.x = 0;
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid, function(sprite, rock) {
-      sprite.body.velocity.x = 0;
+      sprite.body.velocity.x = -1 * speed.getSpeed();
     });
 
     this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode, null, this);

@@ -11,7 +11,7 @@ var Actor = function(game, x, y, frame, type) {
 
   this.body.collideWorldBounds = true;
   this.speed = 100;
-  this.jumpForce = -600;
+  this.jumpForce = -1200;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
   this.health = 2;
@@ -37,8 +37,8 @@ Actor.prototype.walkRight = function() {
 
   this.scale.x = 1;
   this.body.facing = Phaser.RIGHT;
-  this.body.velocity.x += this.speed + Math.abs(speed.getSpeed());
-  this.animations.play('walk', 12, true);
+  this.body.velocity.x += this.speed + Math.abs(speed.getSpeed()) - Math.max(100, this.body.x - 100);
+  this.animations.play('walk', 18, true);
 }
 
 Actor.prototype.walkLeft = function() {
@@ -46,15 +46,16 @@ Actor.prototype.walkLeft = function() {
 
   this.scale.x = -1;
   this.body.facing = Phaser.LEFT;
-  this.body.velocity.x -= (this.speed / 2) + Math.abs(speed.getSpeed());
-  this.animations.play('walk', 12, true);
+  this.body.velocity.x -= this.speed + Math.abs(speed.getSpeed());
+  this.animations.play('walk', 24, true);
 }
 
 Actor.prototype.stopWalking = function() {
   if (this.isOuched) return;
 
-  this.animations.stop();
-  this.frame = 6;
+  this.scale.x = 1;
+  this.body.facing = Phaser.RIGHT;
+  this.animations.play('walk', 12, true);
 }
 
 Actor.prototype.update = function () {
@@ -62,17 +63,15 @@ Actor.prototype.update = function () {
 
   if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP) && this.body.touching.down) {
     this.body.velocity.y = this.jumpForce;
+    this.body.velocity.x = 0;
   }
-
-  if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+  else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
     this.walkRight();
   }
-
-  if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+  else if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
     this.walkLeft();
   }
-  
-  if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
+  else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
       this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
     this.stopWalking();
   }

@@ -1,5 +1,5 @@
 var GameSpeed = function () {
-  this.baseSpeed = -90;
+  this.baseSpeed = -180;
   this.speedFactor = 1;
 }
 

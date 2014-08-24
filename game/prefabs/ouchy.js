@@ -7,6 +7,7 @@ var Ouchy = function(game, x, y, frame) {
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.outOfBoundsKill = true;
   this.body.allowGravity = false;
+  this.body.width = 24;
   this.setType();
 };
 
