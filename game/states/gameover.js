@@ -1,22 +1,43 @@
-
 'use strict';
+
+var ScoreKeeper = require('../services/scorekeeper');
+
 function GameOver() {}
 
 GameOver.prototype = {
+
   preload: function () {
 
   },
+
   create: function () {
-    var style = { font: '65px Arial', fill: '#ffffff', align: 'center'};
-    this.titleText = this.game.add.text(this.game.world.centerX,100, 'Game Over!', style);
-    this.titleText.anchor.setTo(0.5, 0.5);
+    this.titleText = this.game.add.bitmapText(this.game.world.centerX, 225, 'pixelation', 'GAME OVER', 48);
+    this.titleText.updateTransform();
+    this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
 
-    this.congratsText = this.game.add.text(this.game.world.centerX, 200, 'You Win!', { font: '32px Arial', fill: '#ffffff', align: 'center'});
-    this.congratsText.anchor.setTo(0.5, 0.5);
+    this.totalText = this.game.add.bitmapText(this.game.world.centerX, 285, 'pixelation', 'Score: ' + (ScoreKeeper.kid + ScoreKeeper.robot), 32);
+    this.totalText.updateTransform();
+    this.totalText.x = this.game.width / 2 - this.totalText.textWidth / 2;
 
-    this.instructionText = this.game.add.text(this.game.world.centerX, 300, 'Click To Play Again', { font: '16px Arial', fill: '#ffffff', align: 'center'});
-    this.instructionText.anchor.setTo(0.5, 0.5);
+    var wendy = this.game.add.sprite(this.game.world.centerX - 80, 330, 'heads', 0);
+    wendy.anchor.x = .5;
+    this.wendyText = this.game.add.bitmapText(this.game.world.centerX - 80, 385, 'pixelation', String(ScoreKeeper.robot), 18);
+    this.wendyText.align = 'center';
+    this.wendyText.x = this.game.width / 2 - this.wendyText.textWidth / 2 - 80;
+    this.wendyText.updateTransform();
+
+    this.plusSign = this.game.add.bitmapText(this.game.world.centerX, 345, 'pixelation', '+', 38);
+    this.plusSign.updateTransform();
+    this.plusSign.x = this.game.width / 2 - this.plusSign.textWidth / 2;
+
+    var stormy = this.game.add.sprite(this.game.world.centerX + 80, 330, 'heads', 1);
+    stormy.anchor.x = .5;
+    this.stormyText = this.game.add.bitmapText(this.game.world.centerX + 80, 385, 'pixelation', String(ScoreKeeper.kid), 18);
+    this.stormyText.align = 'center';
+    this.stormyText.x = this.game.width / 2 - this.stormyText.textWidth / 2 + 80;
+    this.stormyText.updateTransform();
   },
+
   update: function () {
     if(this.game.input.activePointer.justPressed()) {
       this.game.state.start('play');
