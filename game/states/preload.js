@@ -17,6 +17,7 @@ Preload.prototype = {
     this.load.image('street', 'assets/asphault_street.png');
     this.load.image('field', 'assets/grass_field.png');
     this.load.image('rocket', 'assets/rocket.png');
+    this.load.image('rocketSide', 'assets/rocketSide.png');
     this.load.spritesheet('robot', 'assets/rosie_walk.png',78,140,10);
     this.load.spritesheet('kid', 'assets/stormie_walk_w_can.png',91,120,10);
     this.load.spritesheet('explosion', 'assets/boom3_0.png',64,64,64);

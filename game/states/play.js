@@ -82,6 +82,7 @@ Play.prototype = {
   
   onOuched: function (actor, ouchy) {
     actor.ouch();
+    ouchy.kill();
   },
 
   rocketEsplode: function (ground, rocket) {

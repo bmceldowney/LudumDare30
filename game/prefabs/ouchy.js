@@ -21,11 +21,11 @@ Ouchy.prototype.update = function() {
 };
 
 Ouchy.PLANE = ['plane'];
-Ouchy.BEE = ['bee'];
+Ouchy.BEE = ['bee01', 'bee02'];
 
 Ouchy.prototype.setType = function (value) {
   this.type = value || Ouchy.PLANE;
-  this.animations.add('normal', this.type, 2, true);
+  this.animations.add('normal', this.type, 12, true);
   this.animations.play('normal');
 }
 

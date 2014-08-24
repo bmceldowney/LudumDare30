@@ -9,7 +9,7 @@ var Group = require('../groups/group');
 var Rnd = require('../services/random');
 var BACKGROUND_SPEED = -35;
 var MIDGROUND_SPEED = -65;
-var FOREGROUND_SPEED = -90;
+var FOREGROUND_SPEED = -120;
 var OUCHY_SPEED = -300;
 
 var Environment = function(game, x, y, w, h, back, mid, fore, type) {
