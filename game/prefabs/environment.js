@@ -1,7 +1,7 @@
 'use strict';
 
 var Cloud = require('./cloud');
-var Rock = require('./rock');
+var SadHappy = require('./sadhappy');
 var Group = require('../groups/group');
 var Rnd = require('../services/random');
 var BACKGROUND_SPEED = -35;
@@ -29,7 +29,14 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
   this.foreground.body.allowGravity = false;
   this.foreground.body.immovable = true;
 
+  this.sadhappies = new Group(this.game);
+  this.sadhappies.classType = SadHappy;
+  this.game.add.existing(this.sadhappies);
+
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
+  this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.generateSadHappy, this);
+
+  this.generateSadHappy();
 };
 
 Environment.Type = {
@@ -53,7 +60,7 @@ Environment.create = function(game, type) {
 
 Environment.prototype = {};
 Environment.prototype.update = function() {
-    this.game.physics.arcade.collide(this.foreground, this.rocks);
+    this.game.physics.arcade.collide(this.foreground, this.sadhappies);
 }
 
 Environment.prototype.generateCloud = function() {
@@ -62,6 +69,13 @@ Environment.prototype.generateCloud = function() {
 
   cloud.setType(Cloud.randomType());
   cloud.body.velocity = new Phaser.Point(MIDGROUND_SPEED, 0);
+}
+
+Environment.prototype.generateSadHappy = function() {
+
+  var sadhappy = this.sadhappies.spawn(this.w - 45, Rnd.realInRange(this.y, this.y + this.h - 120));
+
+  sadhappy.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
 }
 
 module.exports = Environment;

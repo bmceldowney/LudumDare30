@@ -31,6 +31,17 @@ Play.prototype = {
       this.robot.body.velocity.y = -420;
       this.kid.body.velocity.y = -420;
     }
+
+    if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
+
+      this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(robot, sadhappy) {
+        sadhappy.makeSuperCool();
+      });
+
+      this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
+        sadhappy.makeSuperCool();
+      });
+    }
   },
 
   clickListener: function() {
