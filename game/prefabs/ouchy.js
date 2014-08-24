@@ -35,4 +35,15 @@ Ouchy.prototype.getSpeed = function () {
   return 250;
 }
 
+Ouchy.prototype.kill = function () {
+  if (this.type === Ouchy.PLANE) {
+    var number = Math.floor(Math.random() * 3) + 1;
+    this.game.sound.play('explosion' + number);  
+  } else {
+    // girl hit
+  }
+  
+  Phaser.Sprite.prototype.kill.call(this);
+}
+
 module.exports = Ouchy;

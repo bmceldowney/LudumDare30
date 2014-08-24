@@ -9,6 +9,7 @@ Music.prototype.init = function (game) {
 
 Music.prototype.stopAll = function () {
   this.mainMusic.stop();
+  this.victoryMusic.stop();
 }
 
 Music.prototype.playMainMusic = function () {

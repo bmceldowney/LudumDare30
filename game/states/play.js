@@ -37,7 +37,6 @@ Play.prototype = {
     this.game.sound.add('explosion2');
     this.game.sound.add('explosion3');
     this.game.sound.add('rocketSound');
-
   },
 
   update: function() {
@@ -89,10 +88,7 @@ Play.prototype = {
   },
   
   onOuched: function (actor, ouchy) {
-    var number = Math.floor(Math.random() * 3) + 1;
     actor.ouch();
-
-    this.game.sound.play('explosion' + number);
     ouchy.kill();
   },
 
