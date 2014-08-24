@@ -32,8 +32,6 @@ Preload.prototype = {
     this.load.audio('explosion2', '../assets/explosion2.wav', true);
     this.load.audio('explosion3', '../assets/explosion3.wav', true);
     this.load.audio('rocketSound', '../assets/sfx_fly.mp3', true);
-
-
     this.load.atlas('ouchies', 'assets/ouchies.png', 'assets/ouchies.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.bitmapFont('pixelation', 'assets/pixelation/pixelation.png', 'assets/pixelation/pixelation.fnt');
   },
@@ -43,8 +41,8 @@ Preload.prototype = {
   update: function() {
     if(!!this.ready) {
       require('../services/music').init(this.game);
-      this.game.state.start('menu');
-      // this.game.state.start('play');
+      // this.game.state.start('menu');
+      this.game.state.start('play');
 
     }
   },

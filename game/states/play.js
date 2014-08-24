@@ -81,6 +81,9 @@ Play.prototype = {
     this.kid.update();
 
     if (this.robot.health < 0 || this.kid.health < 0) {
+      ScoreKeeper.robotDead = Boolean(this.robot.health < 0);
+      ScoreKeeper.kidDead = Boolean(this.kid.health < 0);
+      console.log(ScoreKeeper, this.robot.health, this.kid.health);
       this.game.state.start('gameover');
     }
   },

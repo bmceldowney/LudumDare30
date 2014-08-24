@@ -22,6 +22,7 @@ GameOver.prototype = {
 
     var wendy = this.game.add.sprite(this.game.world.centerX - 80, 330, 'heads', 0);
     wendy.anchor.x = .5;
+    wendy.frame = (ScoreKeeper.robotDead) ? 2 : 0;
     this.wendyText = this.game.add.bitmapText(this.game.world.centerX - 80, 385, 'pixelation', String(ScoreKeeper.robot), 18);
     this.wendyText.align = 'center';
     this.wendyText.x = this.game.width / 2 - this.wendyText.textWidth / 2 - 80;
@@ -33,6 +34,7 @@ GameOver.prototype = {
 
     var stormy = this.game.add.sprite(this.game.world.centerX + 80, 330, 'heads', 1);
     stormy.anchor.x = .5;
+    stormy.frame = (ScoreKeeper.kidDead) ? 3 : 1;
     this.stormyText = this.game.add.bitmapText(this.game.world.centerX + 80, 385, 'pixelation', String(ScoreKeeper.kid), 18);
     this.stormyText.align = 'center';
     this.stormyText.x = this.game.width / 2 - this.stormyText.textWidth / 2 + 80;
