@@ -4,7 +4,7 @@ var GameSpeed = function () {
 }
 
 GameSpeed.prototype.tick = function () {
-  this.speedFactor += .01;
+  this.speedFactor += .02;
 }
 
 GameSpeed.prototype.getSpeed = function () {
