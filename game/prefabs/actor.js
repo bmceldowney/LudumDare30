@@ -10,7 +10,7 @@ var Actor = function(game, x, y, frame, type) {
 
   this.body.collideWorldBounds = true;
   this.anchor.setTo(.5, 1);
-  this.speed = 200;
+  this.speed = 100;
   this.jumpForce = -600;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
@@ -44,8 +44,6 @@ Actor.prototype.stopWalking = function() {
 
 Actor.prototype.update = function () {
   if (this.isOuched) return;
-
-  this.body.velocity.x = Environment.FOREGROUND_SPEED;
 
   if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP) && this.body.touching.down) {
     this.body.velocity.y = this.jumpForce;

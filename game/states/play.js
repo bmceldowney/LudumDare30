@@ -32,10 +32,19 @@ Play.prototype = {
 
     this.bottom.hud.score = ScoreKeeper.kid;
     this.bottom.update();
+
+    this.robot.body.velocity.x = Environment.FOREGROUND_SPEED;
     this.game.physics.arcade.collide(this.top.foreground, this.robot);
-    this.game.physics.arcade.collide(this.top.rocks, this.robot);
+    this.game.physics.arcade.collide(this.top.rocks, this.robot, function(sprite, rock) {
+      sprite.body.velocity.x = 0;
+    });
+
+    this.kid.body.velocity.x = Environment.FOREGROUND_SPEED;
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
-    this.game.physics.arcade.collide(this.bottom.rocks, this.kid);
+    this.game.physics.arcade.collide(this.bottom.rocks, this.kid, function(sprite, rock) {
+      sprite.body.velocity.x = 0;
+    });
+
     this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode, null, this);
     this.game.physics.arcade.overlap(this.kid, this.bottom.ouchies, this.onOuched, null, this);
     this.game.physics.arcade.overlap(this.robot, this.top.ouchies, this.onOuched, null, this);
@@ -59,6 +68,9 @@ Play.prototype = {
         }
       }, null, this);
     }
+
+    this.robot.update();
+    this.kid.update();
   },
   
   onOuched: function (actor, ouchy) {

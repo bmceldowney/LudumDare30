@@ -105,7 +105,7 @@ Environment.prototype.generateThings = function() {
   else {
     this.generateDuaneJohnson();
   }
-  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.realInRange(1,3), this.generateThings, this);
+  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.integerInRange(1,3), this.generateThings, this);
 }
 
 Environment.prototype.generateOuchy = function () {
