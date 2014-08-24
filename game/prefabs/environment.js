@@ -47,7 +47,7 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.ouchies.classType = Ouchy;
   this.game.add.existing(this.ouchies);
 
-  this.hud = new Hud(this.game, this.x + 40, this.y + this.h - 26);
+  this.hud = new Hud(this.game, this.x, this.y);
 
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
   this.generateThings();

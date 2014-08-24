@@ -17,6 +17,7 @@ Play.prototype = {
 
     this.top = Environment.create(this.game, Environment.Type.TOP);
     this.bottom = Environment.create(this.game, Environment.Type.BOTTOM);
+    this.bottom.hud.head.frame = 1;
 
     this.robot = this.game.add.existing(new Actor(this.game, 120, 0, 0, 'robot'));
     this.kid = this.game.add.existing(new Actor(this.game, 120, 360, 0, 'kid'));
@@ -28,9 +29,11 @@ Play.prototype = {
   update: function() {
 
     this.top.hud.score = ScoreKeeper.robot;
+    this.top.hud.lives = this.robot.health;
     this.top.update();
 
     this.bottom.hud.score = ScoreKeeper.kid;
+    this.bottom.hud.lives = this.kid.health;
     this.bottom.update();
 
     this.robot.body.velocity.x = Environment.FOREGROUND_SPEED;
@@ -71,6 +74,10 @@ Play.prototype = {
 
     this.robot.update();
     this.kid.update();
+
+    if (this.robot.health < 0 || this.kid.health < 0) {
+      this.game.state.start('gameover');
+    }
   },
   
   onOuched: function (actor, ouchy) {

@@ -13,6 +13,7 @@ var Actor = function(game, x, y, frame, type) {
   this.jumpForce = -600;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
+  this.health = 2;
 
   if (type == 'kid') {
     this.anchor.setTo(.3, 1);
@@ -85,6 +86,7 @@ Actor.prototype.ouch = function () {
   this.animations.play('ouch', 10, true);
   this.body.velocity.y += this.jumpForce;
   this.body.velocity.x = -100 + Environment.FOREGROUND_SPEED;
+  this.health--;
   
   function unOuch () {
     this.isOuched = false;
