@@ -39,6 +39,13 @@ Play.prototype = {
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid);
     this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode, null, this);
 
+    this.game.physics.arcade.overlap(this.top.sadhappies, this.rocket, function(rocket, sadhappy) {
+      this.rocketEsplode(null, rocket);
+      sadhappy.makeSuperCool();
+      ScoreKeeper.robot += 10;
+      this.bottom.generateOuchy();
+    }, null, this);
+
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP) && this.kid.body.touching.down) {
       this.robot.body.velocity.y = JUMP_FORCE;
       this.kid.body.velocity.y = JUMP_FORCE;
@@ -66,13 +73,6 @@ Play.prototype = {
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
       this.rocket.fire(this.robot);
-      this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(robot, sadhappy) {
-        if (sadhappy.superCool == false) {
-          sadhappy.makeSuperCool();
-          ScoreKeeper.robot += 10;
-          this.bottom.generateOuchy();
-        }
-      }, null, this);
 
       this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
         if (sadhappy.superCool == false) {

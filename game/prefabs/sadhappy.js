@@ -6,6 +6,9 @@ var SadHappy = function(game, x, y, frame, type) {
   this.game.physics.enable(this, Phaser.Physics.ARCADE);
   this.checkWorldBounds = true;
   this.outOfBoundsKill = true;
+  this.blocked = {
+    up: true, right: true, left: true, down: false
+  }
 };
 
 SadHappy.prototype = Object.create(Phaser.Sprite.prototype);

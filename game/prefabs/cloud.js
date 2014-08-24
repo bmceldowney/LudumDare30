@@ -24,8 +24,11 @@ Cloud.Types = [
     Cloud.B,
     Cloud.C,
     Cloud.D,
+    Cloud.E,
+    Cloud.F,
     Cloud.G,
-    Cloud.H
+    Cloud.H,
+    Cloud.I
 ];
 
 Cloud.randomType = function() {
