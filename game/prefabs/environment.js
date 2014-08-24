@@ -10,6 +10,7 @@ var BACKGROUND_SPEED = -35;
 var MIDGROUND_SPEED = -65;
 var FOREGROUND_SPEED = -90;
 var OUCHY_SPEED = -300;
+
 var Environment = function(game, x, y, w, h, back, mid, fore, type) {
 
   this.game = game;
@@ -48,6 +49,8 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
 
   this.generateSadHappy();
 };
+
+Environment.FOREGROUND_SPEED = FOREGROUND_SPEED;
 
 Environment.Type = {
   TOP: 'top',

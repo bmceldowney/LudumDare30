@@ -38,6 +38,8 @@ Play.prototype = {
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid);
     this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode, null, this);
+    this.game.physics.arcade.overlap(this.kid, this.bottom.ouchies, this.onOuched, null, this);
+    this.game.physics.arcade.overlap(this.robot, this.top.ouchies, this.onOuched, null, this);
 
     this.game.physics.arcade.overlap(this.top.sadhappies, this.rocket, function(rocket, sadhappy) {
       this.rocketEsplode(null, rocket);
@@ -51,8 +53,8 @@ Play.prototype = {
       this.kid.body.velocity.y = JUMP_FORCE;
     }
 
-    this.robot.body.velocity.x = -90;
-    this.kid.body.velocity.x = -90;
+    this.robot.body.velocity.x = Environment.FOREGROUND_SPEED;
+    this.kid.body.velocity.x = Environment.FOREGROUND_SPEED;
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
       this.robot.walkRight();
@@ -63,7 +65,7 @@ Play.prototype = {
       this.robot.walkLeft();
       this.kid.walkLeft();
     }
-
+    
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
         this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
       this.robot.stopWalking();
@@ -72,9 +74,9 @@ Play.prototype = {
     
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
-      this.rocket.fire(this.robot);
+      !this.robot.isOuched && this.rocket.fire(this.robot);
 
-      this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
+      !this.kid.isOuched && this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
         if (sadhappy.superCool == false) {
           sadhappy.makeSuperCool();
           ScoreKeeper.kid += 10;
@@ -84,6 +86,11 @@ Play.prototype = {
     }
   },
   
+  onOuched: function (actor, ouchy) {
+    actor.body.velocity.x = Environment.FOREGROUND_SPEED;
+    actor.ouch();
+  },
+
   rocketEsplode: function (ground, rocket) {
     rocket.kill();
     var explosion = this.game.add.sprite(rocket.body.x, rocket.body.y, 'explosion');
