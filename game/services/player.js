@@ -1,4 +1,5 @@
 'use strict';
+var Host = require('../events/host.js');
 
 var Player = function(){};
 
@@ -7,7 +8,7 @@ Player.prototype.currentPlayer = function(){
 };
 
 Player.prototype.sendAction = function(action){
-
-}
+    Host.calculateState(action);
+};
 
 module.exports = Player;

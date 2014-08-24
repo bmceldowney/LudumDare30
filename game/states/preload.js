@@ -12,10 +12,10 @@ Preload.prototype = {
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
-    this.load.image('pink_stripes', 'assets/bkg_pink-stripes.png');
-    this.load.image('orange_stripes', 'assets/bkg_orange-stripes.png');
-    this.load.image('street', 'assets/frg_street.png');
-    this.load.image('field', 'assets/frg_field.png');
+    this.load.image('pink_stripes', 'assets/rolling_hills_background.png');
+    this.load.image('orange_stripes', 'assets/city_background.png');
+    this.load.image('street', 'assets/asphault_street.png');
+    this.load.image('field', 'assets/grass_field.png');
     this.load.spritesheet('robot', 'assets/rosie_walk.png',78,140,8);
     this.load.spritesheet('kid', 'assets/stormie_walk_w_can.png',91,120,8);
     this.load.atlas('blue_clouds', 'assets/bkg_blue-clouds.png', 'assets/bkg_blue-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);

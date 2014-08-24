@@ -23,10 +23,10 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
   this.clouds.classType = Cloud;
   this.game.add.existing(this.clouds);
 
-  this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 40, this.w, 40, fore);
+  this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 77, this.w, 77, fore);
   this.foreground.autoScroll(FOREGROUND_SPEED, 0);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
-  this.foreground.body.offset = new Phaser.Point(0, 10);
+  this.foreground.body.offset = new Phaser.Point(0, 30);
   this.foreground.body.allowGravity = false;
   this.foreground.body.immovable = true;
 
