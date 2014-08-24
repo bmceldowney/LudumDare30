@@ -82,7 +82,7 @@ Actor.prototype.ouch = function () {
   this.isOuched = true;
   this.game.time.events.add(this.ouchDuration, unOuch, this);
   this.animations.play('ouch', 10, true);
-  this.body.velocity.y += this.jumpForce;
+  this.body.velocity.y = this.jumpForce * .5;
   this.body.velocity.x = -100 + speed.getSpeed();
   this.health--;
   
