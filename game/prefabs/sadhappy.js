@@ -7,21 +7,19 @@ var SadHappy = function(game, x, y, frame, type) {
   this.body.immovable = true;
   this.checkWorldBounds = true;
   this.outOfBoundsKill = true;
-  this.superCool = false;
+  this.anchor.x = .5;
+  this.anchor.y = .5;
+  this.scale.x = .5;
+  this.scale.y = .5;
+  this.body.width *= .5;
+  this.body.height *= .5;
 };
 
 SadHappy.prototype = Object.create(Phaser.Sprite.prototype);
 SadHappy.prototype.constructor = SadHappy;
 
-SadHappy.prototype.reset = function(x, y, health) {
-  Phaser.Sprite.prototype.reset.call(this, x, y, health);
-  this.superCool = false;
-  this.frame = 0;
-}
-
 SadHappy.prototype.makeSuperCool = function() {
-  this.superCool = true;
-  this.frame = 1;
+  this.kill();
 }
 
 module.exports = SadHappy;
