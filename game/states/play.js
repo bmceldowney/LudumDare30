@@ -60,19 +60,22 @@ Play.prototype = {
         this.bottom.generateOuchy();
       }
     }, null, this);
-    
-    if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
-      !this.robot.isOuched && this.rocket.fire(this.robot);
-
-      !this.kid.isOuched && this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
+    this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
         if (sadhappy.superCool == false) {
           sadhappy.makeSuperCool();
           ScoreKeeper.kid += 10;
           this.top.generateOuchy();
         }
-      }, null, this);
-    }
+    }, null, this);
+
+    this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(kid, sadhappy) {
+        if (sadhappy.superCool == false) {
+          sadhappy.makeSuperCool();
+          ScoreKeeper.robot += 10;
+          this.bottom.generateOuchy();
+        }
+    }, null, this);
 
     this.robot.update();
     this.kid.update();
