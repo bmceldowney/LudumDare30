@@ -5,12 +5,8 @@ var Actor = require('../prefabs/actor.js');
 var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
 var speed = require('../services/gameSpeed');
-<<<<<<< HEAD
 var music = require('../services/music');
-var GRAVITY = 2000;
-=======
 var GRAVITY = 6000;
->>>>>>> tightening up some movement mechanics
 
 function Play() {}
 
