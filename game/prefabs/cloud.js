@@ -1,5 +1,6 @@
 'use strict';
 
+var Rnd = require('../services/random');
 var Cloud = function(game, x, y, type) {
     Phaser.Sprite.call(this, game, x, y, 'blue_clouds');
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
@@ -17,10 +18,17 @@ Cloud.F = ['blue-cloud_5'];
 Cloud.G = ['blue-cloud_6'];
 Cloud.H = ['blue-cloud_7'];
 Cloud.I = ['blue-cloud_8'];
+Cloud.Types = [
+    Cloud.A,
+    Cloud.B,
+    Cloud.C,
+    Cloud.D,
+    Cloud.G,
+    Cloud.H
+];
 
 Cloud.randomType = function() {
-    var types = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-    return Cloud[types[Math.random() * types.length << 0]];
+    return Rnd.pick(Cloud.Types);
 }
 
 Cloud.prototype = Object.create(Phaser.Sprite.prototype);

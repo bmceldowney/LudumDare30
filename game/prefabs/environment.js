@@ -50,7 +50,7 @@ Environment.create = function(game, type) {
 Environment.prototype = {};
 Environment.prototype.update = function() {
 
-    if (Rnd.integerInRange(0, 500) == 42) {
+    if (Rnd.integerInRange(0, 300) == 42) {
 
       var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 40));
 
