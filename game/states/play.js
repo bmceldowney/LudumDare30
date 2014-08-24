@@ -43,13 +43,17 @@ Play.prototype = {
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
       this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(robot, sadhappy) {
-        sadhappy.makeSuperCool();
-        ScoreKeeper.robot += 10;
+        if (sadhappy.superCool == false) {
+          sadhappy.makeSuperCool();
+          ScoreKeeper.robot += 10;
+        }
       });
 
       this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
-        sadhappy.makeSuperCool();
-        ScoreKeeper.kid += 10;
+        if (sadhappy.superCool == false) {
+          sadhappy.makeSuperCool();
+          ScoreKeeper.kid += 10;
+        }
       });
     }
   },
