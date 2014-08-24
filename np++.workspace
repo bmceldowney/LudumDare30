@@ -25,6 +25,12 @@
         <Folder name="game">
             <Folder name="prefabs">
                 <File name="game\prefabs\actor.js" />
+                <File name="game\prefabs\cloud.js" />
+                <File name="game\prefabs\environment.js" />
+            </Folder>
+            <Folder name="services">
+                <File name="game\services\player.js" />
+                <File name="game\services\world.js" />
             </Folder>
             <Folder name="states">
                 <File name="game\states\boot.js" />

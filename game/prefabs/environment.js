@@ -71,9 +71,9 @@ Environment.prototype.generateCloud = function() {
 
   var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 120));
 
-  cloud.setType(Cloud.randomType());
+      cloud.setType(Cloud.randomType());
   cloud.body.velocity = new Phaser.Point(MIDGROUND_SPEED, 0);
-}
+    }
 
 Environment.prototype.generateSadHappy = function() {
 
