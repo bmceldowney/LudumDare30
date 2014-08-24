@@ -2,6 +2,7 @@
 
 var Cloud = require('./cloud');
 var SadHappy = require('./sadhappy');
+var Hud = require('./hud');
 var Group = require('../groups/group');
 var Rnd = require('../services/random');
 var BACKGROUND_SPEED = -35;
@@ -33,6 +34,8 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
   this.sadhappies.classType = SadHappy;
   this.game.add.existing(this.sadhappies);
 
+  this.hud = new Hud(this.game, this.x + 40, this.y + this.h - 26);
+
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
   this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.generateSadHappy, this);
 
@@ -61,6 +64,7 @@ Environment.create = function(game, type) {
 Environment.prototype = {};
 Environment.prototype.update = function() {
     this.game.physics.arcade.collide(this.foreground, this.sadhappies);
+    this.hud.update();
 }
 
 Environment.prototype.generateCloud = function() {
