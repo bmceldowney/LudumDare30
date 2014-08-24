@@ -16,26 +16,26 @@ GameOver.prototype = {
     this.titleText.updateTransform();
     this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
 
-    this.totalText = this.game.add.bitmapText(this.game.world.centerX, 285, 'pixelation', 'Score: ' + (ScoreKeeper.kid + ScoreKeeper.robot), 32);
+    this.totalText = this.game.add.bitmapText(this.game.world.centerX, 385, 'pixelation', 'Score: ' + (ScoreKeeper.kid + ScoreKeeper.robot), 32);
     this.totalText.updateTransform();
     this.totalText.x = this.game.width / 2 - this.totalText.textWidth / 2;
 
-    var wendy = this.game.add.sprite(this.game.world.centerX - 80, 330, 'heads', 0);
+    var wendy = this.game.add.sprite(this.game.world.centerX - 80, 290, 'heads', 0);
     wendy.anchor.x = .5;
     wendy.frame = (ScoreKeeper.robotDead) ? 2 : 0;
-    this.wendyText = this.game.add.bitmapText(this.game.world.centerX - 80, 385, 'pixelation', String(ScoreKeeper.robot), 18);
+    this.wendyText = this.game.add.bitmapText(this.game.world.centerX - 80, 345, 'pixelation', String(ScoreKeeper.robot), 18);
     this.wendyText.align = 'center';
     this.wendyText.x = this.game.width / 2 - this.wendyText.textWidth / 2 - 80;
     this.wendyText.updateTransform();
 
-    this.plusSign = this.game.add.bitmapText(this.game.world.centerX, 345, 'pixelation', '+', 38);
+    this.plusSign = this.game.add.bitmapText(this.game.world.centerX, 305, 'pixelation', '+', 38);
     this.plusSign.updateTransform();
     this.plusSign.x = this.game.width / 2 - this.plusSign.textWidth / 2;
 
-    var stormy = this.game.add.sprite(this.game.world.centerX + 80, 330, 'heads', 1);
+    var stormy = this.game.add.sprite(this.game.world.centerX + 80, 290, 'heads', 1);
     stormy.anchor.x = .5;
     stormy.frame = (ScoreKeeper.kidDead) ? 3 : 1;
-    this.stormyText = this.game.add.bitmapText(this.game.world.centerX + 80, 385, 'pixelation', String(ScoreKeeper.kid), 18);
+    this.stormyText = this.game.add.bitmapText(this.game.world.centerX + 80, 345, 'pixelation', String(ScoreKeeper.kid), 18);
     this.stormyText.align = 'center';
     this.stormyText.x = this.game.width / 2 - this.stormyText.textWidth / 2 + 80;
     this.stormyText.updateTransform();
