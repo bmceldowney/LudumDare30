@@ -1,8 +1,12 @@
 'use strict';
 
 var Cloud = require('./cloud');
+var Rock = require('./rock');
 var Group = require('../groups/group');
 var Rnd = require('../services/random');
+var BACKGROUND_SPEED = -35;
+var MIDGROUND_SPEED = -65;
+var FOREGROUND_SPEED = -90;
 var Environment = function(game, x, y, w, h, back, mid, fore) {
 
   this.game = game;
@@ -12,20 +16,20 @@ var Environment = function(game, x, y, w, h, back, mid, fore) {
   this.h = h;
 
   this.background = this.game.add.tileSprite(this.x, this.y, this.w, this.h, back);
+  this.background.autoScroll(BACKGROUND_SPEED, 0);
 
   this.clouds = new Group(this.game);
   this.clouds.classType = Cloud;
-
   this.game.add.existing(this.clouds);
+
   this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 40, this.w, 40, fore);
-
-  this.background.autoScroll(-35, 0);
-  this.foreground.autoScroll(-90, 0);
-
+  this.foreground.autoScroll(FOREGROUND_SPEED, 0);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
+  this.foreground.body.offset = new Phaser.Point(0, 10);
   this.foreground.body.allowGravity = false;
   this.foreground.body.immovable = true;
 
+  this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
 };
 
 Environment.Type = {
@@ -38,25 +42,26 @@ Environment.create = function(game, type) {
   switch (type) {
 
     case Environment.Type.TOP:
-      return new Environment(game, 0, 0, 960, 360, 'orange_stripes', 'black_clouds', 'street');
+      return new Environment(game, -30, 0, 1020, 360, 'orange_stripes', 'black_clouds', 'street');
       break;
 
     case Environment.Type.BOTTOM:
-      return new Environment(game, 0, 360, 960, 360, 'pink_stripes', 'blue_clouds', 'field');
+      return new Environment(game, -30, 360, 1020, 360, 'pink_stripes', 'blue_clouds', 'field');
       break;
   }
 }
 
 Environment.prototype = {};
 Environment.prototype.update = function() {
+    this.game.physics.arcade.collide(this.foreground, this.rocks);
+}
 
-    if (Rnd.integerInRange(0, 300) == 42) {
+Environment.prototype.generateCloud = function() {
 
-      var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 40));
+  var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 120));
 
-      cloud.setType(Cloud.randomType());
-      cloud.body.velocity = new Phaser.Point(Rnd.realInRange(-60, -65), 0);
-    }
+  cloud.setType(Cloud.randomType());
+  cloud.body.velocity = new Phaser.Point(MIDGROUND_SPEED, 0);
 }
 
 module.exports = Environment;

@@ -2,9 +2,10 @@
 
 var Actor = function(game, x, y, frame, type) {
   Phaser.Sprite.call(this, game, x, y, type, frame);
-
-  // initialize your prefab here
-  
+  this.game.physics.enable(this, Phaser.Physics.ARCADE);
+  this.animations.add('walk');
+  this.animations.play('walk', 12, true);
+  this.body.collideWorldBounds = true;
 };
 
 Actor.prototype = Object.create(Phaser.Sprite.prototype);

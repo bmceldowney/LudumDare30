@@ -20,6 +20,7 @@ Preload.prototype = {
     this.load.spritesheet('kid', 'assets/stormie_walk.png',61,120,8);
     this.load.atlas('blue_clouds', 'assets/bkg_blue-clouds.png', 'assets/bkg_blue-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.atlas('black_clouds', 'assets/bkg_black-clouds.png', 'assets/bkg_black-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+    this.load.image('rock', 'assets/rock-70.png');
   },
   create: function() {
     this.asset.cropEnabled = false;
