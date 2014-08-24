@@ -4,7 +4,6 @@ var Environment = require('../prefabs/environment.js');
 var Actor = require('../prefabs/actor.js');
 var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
-var JUMP_FORCE = -600;
 var GRAVITY = 2000;
 
 function Play() {}
@@ -47,30 +46,6 @@ Play.prototype = {
       ScoreKeeper.robot += 10;
       this.bottom.generateOuchy();
     }, null, this);
-
-    if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP) && this.kid.body.touching.down) {
-      this.robot.body.velocity.y = JUMP_FORCE;
-      this.kid.body.velocity.y = JUMP_FORCE;
-    }
-
-    this.robot.body.velocity.x = Environment.FOREGROUND_SPEED;
-    this.kid.body.velocity.x = Environment.FOREGROUND_SPEED;
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      this.robot.walkRight();
-      this.kid.walkRight();
-    }
-
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      this.robot.walkLeft();
-      this.kid.walkLeft();
-    }
-    
-    if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
-        this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
-      this.robot.stopWalking();
-      this.kid.stopWalking();
-    }
     
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
@@ -87,7 +62,6 @@ Play.prototype = {
   },
   
   onOuched: function (actor, ouchy) {
-    actor.body.velocity.x = Environment.FOREGROUND_SPEED;
     actor.ouch();
   },
 
