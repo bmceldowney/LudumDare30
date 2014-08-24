@@ -44,17 +44,23 @@ Play.prototype = {
       this.kid.body.velocity.y = JUMP_FORCE;
     }
 
-    this.robot.body.velocity.x = -80;
-    this.kid.body.velocity.x = -80;
+    this.robot.body.velocity.x = -90;
+    this.kid.body.velocity.x = -90;
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-      this.robot.body.velocity.x += 220;
-      this.kid.body.velocity.x += 220;
+      this.robot.walkRight();
+      this.kid.walkRight();
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      this.robot.body.velocity.x -= 100;
-      this.kid.body.velocity.x -= 100;
+      this.robot.walkLeft();
+      this.kid.walkLeft();
+    }
+
+    if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
+        this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
+      this.robot.stopWalking();
+      this.kid.stopWalking();
     }
     
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
