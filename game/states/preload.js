@@ -26,6 +26,8 @@ Preload.prototype = {
     this.load.image('rock', 'assets/rock-70.png');
     this.load.image('sadhappy', 'assets/sadhappy.png');
     this.load.spritesheet('heads', 'assets/heads.png', 50, 50);
+    this.load.audio('theme', ['assets/8BitMetal.wav']);
+    this.load.audio('victory', ['assets/VictoryMusic.wav']);
 
     this.load.atlas('ouchies', 'assets/ouchies.png', 'assets/ouchies.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.bitmapFont('pixelation', 'assets/pixelation/pixelation.png', 'assets/pixelation/pixelation.fnt');
@@ -35,8 +37,9 @@ Preload.prototype = {
   },
   update: function() {
     if(!!this.ready) {
-      // this.game.state.start('menu');
-      this.game.state.start('play');
+      require('../services/music').init(this.game);
+      this.game.state.start('menu');
+      // this.game.state.start('play');
 
     }
   },

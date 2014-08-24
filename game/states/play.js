@@ -5,6 +5,7 @@ var Actor = require('../prefabs/actor.js');
 var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
 var speed = require('../services/gameSpeed');
+var music = require('../services/music');
 var GRAVITY = 2000;
 
 function Play() {}
@@ -27,8 +28,14 @@ Play.prototype = {
     this.game.time.events.loop(Phaser.Timer.SECOND, function () {
       speed.tick();
     });
-
+    
+    music.playMainMusic();
     ScoreKeeper.reset();
+    
+    this.game.sound.add('explosion1');
+    this.game.sound.add('explosion2');
+    this.game.sound.add('explosion3');
+
   },
 
   update: function() {

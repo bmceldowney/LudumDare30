@@ -1,6 +1,7 @@
 'use strict';
 
 var ScoreKeeper = require('../services/scorekeeper');
+var music = require('../services/music');
 
 function GameOver() {}
 
@@ -36,6 +37,7 @@ GameOver.prototype = {
     this.stormyText.align = 'center';
     this.stormyText.x = this.game.width / 2 - this.stormyText.textWidth / 2 + 80;
     this.stormyText.updateTransform();
+    music.playVictoryMusic();
   },
 
   update: function () {
