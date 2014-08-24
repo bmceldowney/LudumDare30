@@ -88,8 +88,9 @@ Play.prototype = {
     rocket.kill();
     var explosion = this.game.add.sprite(rocket.body.x, rocket.body.y, 'explosion');
     
-    explosion.animations.add('initial', null, 8);
+    explosion.animations.add('initial', null, 256);
     explosion.animations.play('initial');
+    this.game.time.events.add(Phaser.Timer.SECOND * .5, explosion.kill, explosion);
   },
   
   clickListener: function() {

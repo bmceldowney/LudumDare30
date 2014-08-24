@@ -26,7 +26,8 @@ Rocket.prototype.fire = function (robot) {
 
   this.reset(x, y, 1);
   this.readyToFire = false;
-  this.body.velocity = new Phaser.Point(300, 200);
+  this.scale.x = robot.scale.x;
+  this.body.velocity = new Phaser.Point(robot.scale.x * 300, 200);
   this.game.time.events.add(this.refireDelay, recycle, this);
 }
   
