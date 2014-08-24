@@ -6,7 +6,7 @@ var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
 var speed = require('../services/gameSpeed');
 var music = require('../services/music');
-var GRAVITY = 6000;
+var GRAVITY = 4000;
 
 function Play() {}
 

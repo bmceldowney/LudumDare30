@@ -11,7 +11,7 @@ var Actor = function(game, x, y, frame, type) {
 
   this.body.collideWorldBounds = true;
   this.speed = 100;
-  this.jumpForce = -1200;
+  this.jumpForce = -900;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
   this.health = 2;
@@ -37,8 +37,14 @@ Actor.prototype.walkRight = function() {
 
   this.scale.x = 1;
   this.body.facing = Phaser.RIGHT;
-  this.body.velocity.x += this.speed + Math.abs(speed.getSpeed()) - Math.max(100, this.body.x - 100);
-  this.animations.play('walk', 18, true);
+
+  if (this.body.touching.down) {
+    this.body.velocity.x += this.speed + Math.abs(speed.getSpeed()) - Math.max(100, this.body.x - 100);
+    this.animations.play('walk', 18, true);
+  }
+  else {
+    this.body.velocity.x += this.speed + Math.abs(speed.getSpeed() * .5) - Math.max(100, this.body.x - 100);
+  }
 }
 
 Actor.prototype.walkLeft = function() {
@@ -46,12 +52,18 @@ Actor.prototype.walkLeft = function() {
 
   this.scale.x = -1;
   this.body.facing = Phaser.LEFT;
-  this.body.velocity.x -= this.speed + Math.abs(speed.getSpeed());
-  this.animations.play('walk', 24, true);
+
+  if (this.body.touching.down) {
+    this.body.velocity.x -= this.speed + Math.abs(speed.getSpeed());
+    this.animations.play('walk', 12, true);
+  }
+  else {
+    this.body.velocity.x -= this.speed + Math.abs(speed.getSpeed() * .5);
+  }
 }
 
 Actor.prototype.stopWalking = function() {
-  if (this.isOuched) return;
+  if (this.isOuched || this.body.touching.down == false) return;
 
   this.scale.x = 1;
   this.body.facing = Phaser.RIGHT;
@@ -62,6 +74,8 @@ Actor.prototype.update = function () {
   if (this.isOuched) return;
 
   if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP) && this.body.touching.down) {
+    this.animations.stop();
+    this.frame = 3;
     this.body.velocity.y = this.jumpForce;
     this.body.velocity.x = 0;
   }
