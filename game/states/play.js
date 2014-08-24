@@ -56,15 +56,6 @@ Play.prototype = {
     this.game.physics.arcade.overlap(this.kid, this.bottom.ouchies, this.onOuched, null, this);
     this.game.physics.arcade.overlap(this.robot, this.top.ouchies, this.onOuched, null, this);
 
-    this.game.physics.arcade.overlap(this.top.sadhappies, this.rocket, function(rocket, sadhappy) {
-      this.rocketEsplode(null, rocket);
-      if (sadhappy.superCool == false) {
-        sadhappy.makeSuperCool();
-        ScoreKeeper.robot += 10;
-        this.bottom.generateOuchy();
-      }
-    }, null, this);
-
     this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
         if (sadhappy.superCool == false) {
           sadhappy.makeSuperCool();

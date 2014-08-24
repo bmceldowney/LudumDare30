@@ -24,7 +24,7 @@ Preload.prototype = {
     this.load.atlas('blue_clouds', 'assets/bkg_blue-clouds.png', 'assets/bkg_blue-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.atlas('black_clouds', 'assets/bkg_black-clouds.png', 'assets/bkg_black-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.image('rock', 'assets/rock-70.png');
-    this.load.spritesheet('sadhappy', 'assets/sadhappy.png', 35, 55);
+    this.load.spritesheet('sadhappy', 'assets/sadhappy.png', 35, 35);
     this.load.spritesheet('heads', 'assets/heads.png', 50, 50);
 
     this.load.atlas('ouchies', 'assets/ouchies.png', 'assets/ouchies.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
