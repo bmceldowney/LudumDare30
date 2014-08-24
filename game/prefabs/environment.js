@@ -3,6 +3,7 @@
 var Cloud = require('./cloud');
 var SadHappy = require('./sadhappy');
 var Ouchy = require('./ouchy');
+var Rock = require('./rock');
 var Hud = require('./hud');
 var Group = require('../groups/group');
 var Rnd = require('../services/random');
@@ -37,6 +38,10 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.sadhappies = new Group(this.game);
   this.sadhappies.classType = SadHappy;
   this.game.add.existing(this.sadhappies);
+
+  this.rocks = new Group(this.game);
+  this.rocks.classType = Rock;
+  this.game.add.existing(this.rocks);
   
   this.ouchies = new Group(this.game);
   this.ouchies.classType = Ouchy;
@@ -45,8 +50,7 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.hud = new Hud(this.game, this.x + 40, this.y + this.h - 26);
 
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
-
-  this.generateSadHappy();
+  this.generateThings();
 };
 
 Environment.FOREGROUND_SPEED = FOREGROUND_SPEED;
@@ -74,6 +78,7 @@ Environment.prototype = {};
 
 Environment.prototype.update = function() {
   this.game.physics.arcade.collide(this.foreground, this.sadhappies);
+  this.game.physics.arcade.collide(this.foreground, this.rocks);
   this.hud.update();
 }
 
@@ -84,9 +89,23 @@ Environment.prototype.generateCloud = function() {
 }
 
 Environment.prototype.generateSadHappy = function() {
-  var sadhappy = this.sadhappies.spawn(this.w - 45, Rnd.realInRange(this.y, this.y + this.h - 120));
+  var sadhappy = this.sadhappies.spawn(this.w - 45, this.y);
   sadhappy.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
-  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.realInRange(1,3), this.generateSadHappy, this);
+}
+
+Environment.prototype.generateDuaneJohnson = function() {
+  var duaneJohnson = this.rocks.spawn(this.w - 45, this.h + this.y - 110);
+  duaneJohnson.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
+}
+
+Environment.prototype.generateThings = function() {
+  if (Rnd.integerInRange(0,1)) {
+    this.generateSadHappy();
+  }
+  else {
+    this.generateDuaneJohnson();
+  }
+  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.realInRange(1,3), this.generateThings, this);
 }
 
 Environment.prototype.generateOuchy = function () {

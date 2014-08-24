@@ -3,7 +3,8 @@
 var Rock = function(game, x, y, frame, type) {
     Phaser.Sprite.call(this, game, x, y, 'rock');
     this.game.physics.enable(this, Phaser.Physics.ARCADE);
-    this.body.setSize(this.body.width - 40, this.body.height - 20, 20, 0);
+    this.body.allowGravity = false;
+    this.body.immovable = true;
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
 };
