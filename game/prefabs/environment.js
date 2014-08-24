@@ -112,6 +112,8 @@ Environment.prototype.generateOuchy = function () {
 
   if (this.type === Environment.Type.BOTTOM) {
     ouchy.setType(Ouchy.BEE);
+  } else {
+    this.game.sound.play('rocketSound');
   }
   
   ouchy.body.velocity = new Phaser.Point(speed.getSpeed() - ouchy.getSpeed(), 0);

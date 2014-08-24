@@ -28,6 +28,11 @@ Preload.prototype = {
     this.load.spritesheet('heads', 'assets/heads.png', 50, 50);
     this.load.audio('theme', ['assets/8BitMetal.wav']);
     this.load.audio('victory', ['assets/VictoryMusic.wav']);
+    this.load.audio('explosion1', '../assets/explosion1.wav', true);
+    this.load.audio('explosion2', '../assets/explosion2.wav', true);
+    this.load.audio('explosion3', '../assets/explosion3.wav', true);
+    this.load.audio('rocketSound', '../assets/sfx_fly.mp3', true);
+
 
     this.load.atlas('ouchies', 'assets/ouchies.png', 'assets/ouchies.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.bitmapFont('pixelation', 'assets/pixelation/pixelation.png', 'assets/pixelation/pixelation.fnt');

@@ -36,6 +36,7 @@ Play.prototype = {
     this.game.sound.add('explosion1');
     this.game.sound.add('explosion2');
     this.game.sound.add('explosion3');
+    this.game.sound.add('rocketSound');
 
   },
 
@@ -65,15 +66,15 @@ Play.prototype = {
     this.game.physics.arcade.overlap(this.robot, this.top.ouchies, this.onOuched, null, this);
 
     this.game.physics.arcade.overlap(this.kid, this.bottom.sadhappies, function(kid, sadhappy) {
-        sadhappy.makeSuperCool();
-        ScoreKeeper.kid += 10;
-        this.top.generateOuchy();
+      sadhappy.makeSuperCool();
+      ScoreKeeper.kid += 10;
+      this.top.generateOuchy();
     }, null, this);
 
     this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(kid, sadhappy) {
-        sadhappy.makeSuperCool();
-        ScoreKeeper.robot += 10;
-        this.bottom.generateOuchy();
+      sadhappy.makeSuperCool();
+      ScoreKeeper.robot += 10;
+      this.bottom.generateOuchy();
     }, null, this);
 
     this.robot.update();
@@ -85,7 +86,10 @@ Play.prototype = {
   },
   
   onOuched: function (actor, ouchy) {
+    var number = Math.floor(Math.random() * 3) + 1;
     actor.ouch();
+
+    this.game.sound.play('explosion' + number);
     ouchy.kill();
   },
 
