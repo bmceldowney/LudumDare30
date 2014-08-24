@@ -3,8 +3,11 @@
 var Rocket = function(game, x, y, frame) {
   Phaser.Sprite.call(this, game, x, y, 'rocket', frame);
 
-  // initialize your prefab here
-  
+  this.game.physics.enable(this, Phaser.Physics.ARCADE);
+  this.body.allowGravity = false;
+  this.kill();
+  this.readyToFire = true;
+  this.refireDelay = 1 * 1000;
 };
 
 Rocket.prototype = Object.create(Phaser.Sprite.prototype);
@@ -16,4 +19,19 @@ Rocket.prototype.update = function() {
   
 };
 
+Rocket.prototype.fire = function (robot) {
+  if (this.alive || !this.readyToFire) return;
+  var x = robot.body.x + 30;
+  var y = robot.body.y + 60;
+
+  this.reset(x, y, 1);
+  this.readyToFire = false;
+  this.body.velocity = new Phaser.Point(300, 200);
+  this.game.time.events.add(this.refireDelay, recycle, this);
+}
+  
+function recycle () {
+  this.readyToFire = true;
+}
+  
 module.exports = Rocket;

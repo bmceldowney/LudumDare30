@@ -35,7 +35,7 @@ Play.prototype = {
     this.game.physics.arcade.collide(this.top.rocks, this.robot);
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid);
-    this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode);
+    this.game.physics.arcade.collide(this.top.foreground, this.rocket, this.rocketEsplode, null, this);
 
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.UP)) {
       this.robot.body.velocity.y = -420;
@@ -44,7 +44,7 @@ Play.prototype = {
 
     if (this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
 
-      this.fireRocket();
+      this.rocket.fire(this.robot);
       this.game.physics.arcade.overlap(this.robot, this.top.sadhappies, function(robot, sadhappy) {
         if (sadhappy.superCool == false) {
         sadhappy.makeSuperCool();
@@ -59,20 +59,14 @@ Play.prototype = {
         }
       });
     }
-    
-    // this.game.debug.body(this.rocket);
-  },
-  
-  fireRocket: function () {
-    var x = this.robot.body.x + 30;
-    var y = this.robot.body.y + 60;
-
-    this.rocket.reset(x, y, 1);
-    this.rocket.body.velocity = new Phaser.Point(120, 100);
   },
   
   rocketEsplode: function (ground, rocket) {
-    rocket.kill();        
+    rocket.kill();
+    var explosion = this.game.add.sprite(rocket.body.x, rocket.body.y, 'explosion');
+    
+    explosion.animations.add('initial', null, 8);
+    explosion.animations.play('initial');
   },
   
   clickListener: function() {
