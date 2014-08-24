@@ -14,6 +14,9 @@ var Actor = function(game, x, y, frame, type) {
   this.jumpForce = -600;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
+
+  this.body.width = 16;
+  this.body.offset.x = 0;
 };
 
 Actor.prototype = Object.create(Phaser.Sprite.prototype);
