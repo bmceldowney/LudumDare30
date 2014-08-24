@@ -41,6 +41,7 @@
                 <File name="game\services\world.js" />
                 <File name="game\services\random.js" />
                 <File name="game\services\scorekeeper.js" />
+                <File name="game\services\gameSpeed.js" />
             </Folder>
             <Folder name="states">
                 <File name="game\states\boot.js" />

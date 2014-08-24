@@ -4,6 +4,7 @@ var Environment = require('../prefabs/environment.js');
 var Actor = require('../prefabs/actor.js');
 var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
+var speed = require('../services/gameSpeed');
 var GRAVITY = 2000;
 
 function Play() {}
@@ -23,11 +24,14 @@ Play.prototype = {
     this.kid = this.game.add.existing(new Actor(this.game, 120, 360, 0, 'kid'));
     this.rocket = this.game.add.existing(new Rocket(this.game, 20, 0, 0));
 
+    this.game.time.events.loop(Phaser.Timer.SECOND, function () {
+      speed.tick();
+    });
+
     ScoreKeeper.reset();
   },
 
   update: function() {
-
     this.top.hud.score = ScoreKeeper.robot;
     this.top.hud.lives = this.robot.health;
     this.top.update();
@@ -36,13 +40,13 @@ Play.prototype = {
     this.bottom.hud.lives = this.kid.health;
     this.bottom.update();
 
-    this.robot.body.velocity.x = Environment.FOREGROUND_SPEED;
+    this.robot.body.velocity.x = speed.getSpeed();
     this.game.physics.arcade.collide(this.top.foreground, this.robot);
     this.game.physics.arcade.collide(this.top.rocks, this.robot, function(sprite, rock) {
       sprite.body.velocity.x = 0;
     });
 
-    this.kid.body.velocity.x = Environment.FOREGROUND_SPEED;
+    this.kid.body.velocity.x = speed.getSpeed();
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid, function(sprite, rock) {
       sprite.body.velocity.x = 0;

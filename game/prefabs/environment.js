@@ -7,10 +7,7 @@ var Rock = require('./rock');
 var Hud = require('./hud');
 var Group = require('../groups/group');
 var Rnd = require('../services/random');
-var BACKGROUND_SPEED = -35;
-var MIDGROUND_SPEED = -65;
-var FOREGROUND_SPEED = -120;
-var OUCHY_SPEED = -300;
+var speed = require('../services/gameSpeed');
 
 var Environment = function(game, x, y, w, h, back, mid, fore, type) {
 
@@ -22,14 +19,14 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.type = type;
 
   this.background = this.game.add.tileSprite(this.x, this.y, this.w, this.h, back);
-  this.background.autoScroll(BACKGROUND_SPEED, 0);
+  this.background.autoScroll(speed.getBackgroundSpeed(), 0);
 
   this.clouds = new Group(this.game);
   this.clouds.classType = Cloud;
   this.game.add.existing(this.clouds);
 
   this.foreground = this.game.add.tileSprite(this.x, this.y + this.h - 77, this.w, 77, fore);
-  this.foreground.autoScroll(FOREGROUND_SPEED, 0);
+  this.foreground.autoScroll(speed.getSpeed(), 0);
   this.game.physics.enable(this.foreground, Phaser.Physics.ARCADE);
   this.foreground.body.offset = new Phaser.Point(0, 30);
   this.foreground.body.allowGravity = false;
@@ -52,8 +49,6 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.game.time.events.loop(Phaser.Timer.SECOND * 2.25, this.generateCloud, this);
   this.generateThings();
 };
-
-Environment.FOREGROUND_SPEED = FOREGROUND_SPEED;
 
 Environment.Type = {
   TOP: 'top',
@@ -80,22 +75,25 @@ Environment.prototype.update = function() {
   this.game.physics.arcade.collide(this.foreground, this.sadhappies);
   this.game.physics.arcade.collide(this.foreground, this.rocks);
   this.hud.update();
+
+  this.background.autoScroll(speed.getBackgroundSpeed(), 0);
+  this.foreground.autoScroll(speed.getSpeed(), 0);
 }
 
 Environment.prototype.generateCloud = function() {
   var cloud = this.clouds.spawn(this.w, Rnd.realInRange(this.y, this.y + this.h - 120));
   cloud.setType(Cloud.randomType());
-  cloud.body.velocity = new Phaser.Point(MIDGROUND_SPEED, 0);
+  cloud.body.velocity = new Phaser.Point(speed.getMidgroundSpeed(), 0);
 }
 
 Environment.prototype.generateSadHappy = function() {
   var sadhappy = this.sadhappies.spawn(this.w - 45, this.y);
-  sadhappy.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
+  sadhappy.body.velocity = new Phaser.Point(speed.getSpeed(), 0);
 }
 
 Environment.prototype.generateDuaneJohnson = function() {
   var duaneJohnson = this.rocks.spawn(this.w - 45, this.h + this.y - 110);
-  duaneJohnson.body.velocity = new Phaser.Point(FOREGROUND_SPEED, 0);
+  duaneJohnson.body.velocity = new Phaser.Point(speed.getSpeed(), 0);
 }
 
 Environment.prototype.generateThings = function() {
@@ -115,7 +113,7 @@ Environment.prototype.generateOuchy = function () {
     ouchy.setType(Ouchy.BEE);
   }
   
-  ouchy.body.velocity = new Phaser.Point(FOREGROUND_SPEED - ouchy.getSpeed(), 0);
+  ouchy.body.velocity = new Phaser.Point(speed.getSpeed() - ouchy.getSpeed(), 0);
 }
 
 module.exports = Environment;

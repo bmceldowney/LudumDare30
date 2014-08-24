@@ -1,6 +1,7 @@
 'use strict';
 
 var Environment = require('./environment');
+var speed = require('../services/gameSpeed');
 
 var Actor = function(game, x, y, frame, type) {
   Phaser.Sprite.call(this, game, x, y, type, frame);
@@ -36,7 +37,7 @@ Actor.prototype.walkRight = function() {
 
   this.scale.x = 1;
   this.body.facing = Phaser.RIGHT;
-  this.body.velocity.x += this.speed + Math.abs(Environment.FOREGROUND_SPEED);
+  this.body.velocity.x += this.speed + Math.abs(speed.getSpeed());
   this.animations.play('walk', 12, true);
 }
 
@@ -45,7 +46,7 @@ Actor.prototype.walkLeft = function() {
 
   this.scale.x = -1;
   this.body.facing = Phaser.LEFT;
-  this.body.velocity.x -= (this.speed / 2) + Math.abs(Environment.FOREGROUND_SPEED);
+  this.body.velocity.x -= (this.speed / 2) + Math.abs(speed.getSpeed());
   this.animations.play('walk', 12, true);
 }
 
@@ -75,8 +76,6 @@ Actor.prototype.update = function () {
       this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
     this.stopWalking();
   }
-
-  // this.game.debug.body(this);
 }
 
 Actor.prototype.ouch = function () {
@@ -85,7 +84,7 @@ Actor.prototype.ouch = function () {
   this.game.time.events.add(this.ouchDuration, unOuch, this);
   this.animations.play('ouch', 10, true);
   this.body.velocity.y += this.jumpForce;
-  this.body.velocity.x = -100 + Environment.FOREGROUND_SPEED;
+  this.body.velocity.x = -100 + speed.getSpeed();
   this.health--;
   
   function unOuch () {
