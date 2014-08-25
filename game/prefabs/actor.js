@@ -10,8 +10,8 @@ var Actor = function(game, x, y, frame, type) {
   this.animations.add('ouch', [8,9]);
 
   this.body.collideWorldBounds = true;
-  this.speed = 100;
-  this.jumpForce = -900;
+  this.speed = 60;
+  this.jumpForce = -950;
   this.isOuched = false
   this.ouchDuration = .75 * 1000;
   this.health = 2;
@@ -86,7 +86,7 @@ Actor.prototype.update = function () {
     this.walkLeft();
   }
   else if (this.game.input.keyboard.isDown(Phaser.Keyboard.RIGHT) == false &&
-      this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
+    this.game.input.keyboard.isDown(Phaser.Keyboard.LEFT) == false) {
     this.stopWalking();
   }
 }
@@ -97,7 +97,7 @@ Actor.prototype.ouch = function () {
   this.game.time.events.add(this.ouchDuration, unOuch, this);
   this.animations.play('ouch', 10, true);
   this.body.velocity.y = this.jumpForce * .5;
-  this.body.velocity.x = -100 + speed.getSpeed();
+  this.body.velocity.x = speed.getSpeed();
   this.health--;
   
   function unOuch () {

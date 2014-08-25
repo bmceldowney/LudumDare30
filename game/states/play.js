@@ -49,13 +49,17 @@ Play.prototype = {
     this.bottom.hud.lives = this.kid.health;
     this.bottom.update();
 
-    this.robot.body.velocity.x = 0;
+    if (this.robot.isOuched == false) {
+      this.robot.body.velocity.x = 0;
+    }
     this.game.physics.arcade.collide(this.top.foreground, this.robot);
     this.game.physics.arcade.collide(this.top.rocks, this.robot, function(sprite, rock) {
       sprite.body.velocity.x = -1 * speed.getSpeed();
     });
 
-    this.kid.body.velocity.x = 0;
+    if (this.kid.isOuched == false) {
+      this.kid.body.velocity.x = 0;
+    }
     this.game.physics.arcade.collide(this.bottom.foreground, this.kid);
     this.game.physics.arcade.collide(this.bottom.rocks, this.kid, function(sprite, rock) {
       sprite.body.velocity.x = -1 * speed.getSpeed();
