@@ -55,7 +55,7 @@ Preload.prototype = {
 
       this.asset.kill();
 
-      this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"THE COMING STORM"', 48);
+      this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"TOGETHER"', 48);
       this.titleText.updateTransform();
       this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
 

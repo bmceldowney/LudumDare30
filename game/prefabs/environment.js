@@ -87,10 +87,15 @@ Environment.prototype.generateCloud = function() {
 }
 
 Environment.prototype.generateSadHappy = function() {
-  var y = Rnd.integerInRange(0,1) ? this.h + this.y - 160 : this.h + this.y - 220;
-  var sadhappy = this.sadhappies.spawn(this.w - 45, y);
+  
+  var sadhappy = this.sadhappies.spawn(this.w - 45, 0);
     if (this.type === Environment.Type.BOTTOM) {
         sadhappy.setType(Fliers.BUTTERFLY);
+        sadhappy.y = Rnd.integerInRange(0,1) ? this.h + this.y - 110 : this.h + this.y - 220;
+    }
+    else {
+        sadhappy.setType(Fliers.HELICOPTER);
+        sadhappy.y = Rnd.integerInRange(0,1) ? this.h + this.y - 110 : this.h + this.y - 220;
     }
   sadhappy.body.velocity = new Phaser.Point(speed.getSpeed(), 0);
 }
@@ -107,7 +112,7 @@ Environment.prototype.generateThings = function() {
   else {
     this.generateDuaneJohnson();
   }
-  this.game.time.events.add(Phaser.Timer.SECOND * Rnd.realInRange(1,2), this.generateThings, this);
+  this.game.time.events.add(Phaser.Timer.SECOND - speed.speedFactor, this.generateThings, this);
 }
 
 Environment.prototype.generateOuchy = function () {
