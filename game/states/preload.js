@@ -27,12 +27,16 @@ Preload.prototype = {
     this.load.image('sadhappy', 'assets/sadhappy.png');
     this.load.spritesheet('heads', 'assets/heads.png', 50, 50);
     this.load.audio('theme', ['assets/8BitMetal.wav']);
+    this.load.audio('altTheme', ['assets/HappyLevel.wav']);
     this.load.audio('victory', ['assets/VictoryMusic.wav']);
     this.load.audio('explosion1', '../assets/explosion1.wav', true);
     this.load.audio('explosion2', '../assets/explosion2.wav', true);
     this.load.audio('explosion3', '../assets/explosion3.wav', true);
     this.load.audio('rocketSound', '../assets/sfx_fly.mp3', true);
     this.load.audio('pop', '../assets/Picked Coin Echo.wav', true);
+    this.load.audio('girlHurt1', '../assets/Female - Oof 1.wav', true);
+    this.load.audio('girlHurt2', '../assets/Female - Ouch 1.wav', true);
+    this.load.audio('bee', '../assets/bee1.wav', true);
     this.load.atlas('ouchies', 'assets/ouchies.png', 'assets/ouchies.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.bitmapFont('pixelation', 'assets/pixelation/pixelation.png', 'assets/pixelation/pixelation.fnt');
   },
@@ -44,7 +48,6 @@ Preload.prototype = {
       require('../services/music').init(this.game);
       // this.game.state.start('menu');
       this.game.state.start('play');
-
     }
   },
   onLoadComplete: function() {

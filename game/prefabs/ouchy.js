@@ -47,7 +47,8 @@ Ouchy.prototype.kill = function () {
     this.game.time.events.add(Phaser.Timer.SECOND * .5, this.explosion.kill, this.explosion);
 
   } else {
-    // girl hit
+    var number = Math.floor(Math.random() * 2) + 1;
+    this.game.sound.play('girlHurt' + number, .75);  
   }
   
   Phaser.Sprite.prototype.kill.call(this);

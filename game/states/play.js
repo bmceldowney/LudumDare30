@@ -37,7 +37,10 @@ Play.prototype = {
     this.game.sound.add('explosion2');
     this.game.sound.add('explosion3');
     this.game.sound.add('rocketSound');
-    this.game.sound.add('rocketSound');
+    this.game.sound.add('pop');
+    this.game.sound.add('girlHurt1');
+    this.game.sound.add('girlHurt2');
+    this.game.sound.add('bee');
   },
 
   update: function() {
