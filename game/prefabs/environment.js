@@ -1,7 +1,7 @@
 'use strict';
 
 var Cloud = require('./cloud');
-var SadHappy = require('./sadhappy');
+var Fliers = require('./fliers');
 var Ouchy = require('./ouchy');
 var Rock = require('./rock');
 var Hud = require('./hud');
@@ -33,13 +33,13 @@ var Environment = function(game, x, y, w, h, back, mid, fore, type) {
   this.foreground.body.immovable = true;
 
   this.sadhappies = new Group(this.game);
-  this.sadhappies.classType = SadHappy;
+  this.sadhappies.classType = Fliers;
   this.game.add.existing(this.sadhappies);
 
   this.rocks = new Group(this.game);
   this.rocks.classType = Rock;
   this.game.add.existing(this.rocks);
-  
+
   this.ouchies = new Group(this.game);
   this.ouchies.classType = Ouchy;
   this.game.add.existing(this.ouchies);
@@ -87,8 +87,11 @@ Environment.prototype.generateCloud = function() {
 }
 
 Environment.prototype.generateSadHappy = function() {
-  var y = Rnd.integerInRange(0,1) ? this.h + this.y - 110 : this.h + this.y - 220;
+  var y = Rnd.integerInRange(0,1) ? this.h + this.y - 160 : this.h + this.y - 220;
   var sadhappy = this.sadhappies.spawn(this.w - 45, y);
+    if (this.type === Environment.Type.BOTTOM) {
+        sadhappy.setType(Fliers.BUTTERFLY);
+    }
   sadhappy.body.velocity = new Phaser.Point(speed.getSpeed(), 0);
 }
 
@@ -116,7 +119,7 @@ Environment.prototype.generateOuchy = function () {
   } else {
     this.game.sound.play('rocketSound', .8);
   }
-  
+
   ouchy.body.velocity = new Phaser.Point(speed.getSpeed() - ouchy.getSpeed(), 0);
 }
 
