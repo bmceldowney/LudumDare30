@@ -39,11 +39,28 @@ GameOver.prototype = {
     this.stormyText.align = 'center';
     this.stormyText.x = this.game.width / 2 - this.stormyText.textWidth / 2 + 80;
     this.stormyText.updateTransform();
+
     music.playVictoryMusic();
+
+    this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO RESTART', 22);
+    this.pressSpacebar.updateTransform();
+    this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
+
+    this.game.time.events.loop(400, function() {
+      if (!!this.pressSpacebar) {
+        this.pressSpacebar.destroy();
+        this.pressSpacebar = null;
+      }
+      else {
+        this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO RESTART', 22);
+        this.pressSpacebar.updateTransform();
+        this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
+      }
+    }, this);
   },
 
   update: function () {
-    if(this.game.input.activePointer.justPressed()) {
+    if(this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
       this.game.state.start('play');
     }
   }

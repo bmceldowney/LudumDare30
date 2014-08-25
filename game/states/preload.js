@@ -7,7 +7,8 @@ function Preload() {
 
 Preload.prototype = {
   preload: function() {
-    this.asset = this.add.sprite(this.width/2,this.height/2, 'preloader');
+
+    this.asset = this.add.sprite(this.game.width * .5, this.game.height * .7, 'preloader');
     this.asset.anchor.setTo(0.5, 0.5);
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
@@ -44,14 +45,37 @@ Preload.prototype = {
     this.asset.cropEnabled = false;
   },
   update: function() {
-    if(!!this.ready) {
-      require('../services/music').init(this.game);
-      // this.game.state.start('menu');
+    if(!!this.ready && this.game.input.keyboard.justPressed(Phaser.Keyboard.SPACEBAR)) {
       this.game.state.start('play');
     }
   },
   onLoadComplete: function() {
-    this.ready = true;
+
+      require('../services/music').init(this.game);
+
+      this.asset.kill();
+
+      this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"THE COMING STORM"', 48);
+      this.titleText.updateTransform();
+      this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
+
+      this.ready = true;
+
+      this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
+      this.pressSpacebar.updateTransform();
+      this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
+
+      this.game.time.events.loop(400, function() {
+        if (!!this.pressSpacebar) {
+          this.pressSpacebar.destroy();
+          this.pressSpacebar = null;
+        }
+        else {
+          this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
+          this.pressSpacebar.updateTransform();
+          this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
+        }
+      }, this);
   }
 };
 
