@@ -25,10 +25,11 @@ Preload.prototype = {
     this.load.atlas('blue_clouds', 'assets/bkg_blue-clouds.png', 'assets/bkg_blue-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.atlas('black_clouds', 'assets/bkg_black-clouds.png', 'assets/bkg_black-clouds.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.image('rock', 'assets/rock-70.png');
-      this.load.atlas('fliers', 'assets/fliers.png', 'assets/fliers.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
+    this.load.atlas('fliers', 'assets/fliers.png', 'assets/fliers.json', null, Phaser.Loader.TEXTURE_ATLAS_JSON_HASH);
     this.load.spritesheet('heads', 'assets/heads.png', 50, 50);
     this.load.audio('theme', ['assets/8BitMetal.wav']);
     this.load.audio('altTheme', ['assets/HappyLevel.wav']);
+    this.load.audio('intro', ['assets/IntroLoop.wav']);
     this.load.audio('victory', ['assets/VictoryMusic.wav']);
     this.load.audio('explosion1', '../assets/explosion1.wav', true);
     this.load.audio('explosion2', '../assets/explosion2.wav', true);
@@ -50,32 +51,33 @@ Preload.prototype = {
     }
   },
   onLoadComplete: function() {
+    var music = require('../services/music');
+    music.init(this.game);
+    
+    music.playIntroMusic();
+    this.asset.kill();
 
-      require('../services/music').init(this.game);
+    this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"TOGETHER"', 48);
+    this.titleText.updateTransform();
+    this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
 
-      this.asset.kill();
+    this.ready = true;
 
-      this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"TOGETHER"', 48);
-      this.titleText.updateTransform();
-      this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
+    this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
+    this.pressSpacebar.updateTransform();
+    this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
 
-      this.ready = true;
-
-      this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
-      this.pressSpacebar.updateTransform();
-      this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
-
-      this.game.time.events.loop(400, function() {
-        if (!!this.pressSpacebar) {
-          this.pressSpacebar.destroy();
-          this.pressSpacebar = null;
-        }
-        else {
-          this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
-          this.pressSpacebar.updateTransform();
-          this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
-        }
-      }, this);
+    this.game.time.events.loop(400, function() {
+      if (!!this.pressSpacebar) {
+        this.pressSpacebar.destroy();
+        this.pressSpacebar = null;
+      }
+      else {
+        this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
+        this.pressSpacebar.updateTransform();
+        this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
+      }
+    }, this);
   }
 };
 
