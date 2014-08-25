@@ -19,6 +19,8 @@ SadHappy.prototype = Object.create(Phaser.Sprite.prototype);
 SadHappy.prototype.constructor = SadHappy;
 
 SadHappy.prototype.makeSuperCool = function() {
+  this.game.sound.play('pop');  
+
   this.kill();
 }
 
