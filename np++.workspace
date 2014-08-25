@@ -35,6 +35,7 @@
                 <File name="game\prefabs\ouchy.js" />
                 <File name="game\prefabs\rock.js" />
                 <File name="game\prefabs\sadhappy.js" />
+                <File name="game\prefabs\fliers.js" />
             </Folder>
             <Folder name="services">
                 <File name="game\services\player.js" />

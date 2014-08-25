@@ -23,6 +23,8 @@ Fliers.prototype = Object.create(Phaser.Sprite.prototype);
 Fliers.prototype.constructor = Fliers;
 
 Fliers.prototype.makeSuperCool = function () {
+    this.game.sound.play('pop');  
+
     this.kill();
 };
 Fliers.prototype.setType = function (value) {

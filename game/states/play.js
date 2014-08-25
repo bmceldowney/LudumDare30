@@ -44,6 +44,7 @@ Play.prototype = {
   },
 
   update: function() {
+
     this.top.hud.score = ScoreKeeper.robot;
     this.top.hud.lives = this.robot.health;
     this.top.update();
