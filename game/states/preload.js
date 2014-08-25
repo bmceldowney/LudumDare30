@@ -50,6 +50,7 @@ Preload.prototype = {
     }
   },
   onLoadComplete: function() {
+    require('../services/distance').init(this.game);
     var music = require('../services/music');
     music.init(this.game);
     

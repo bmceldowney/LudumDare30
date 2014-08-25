@@ -3,7 +3,6 @@
 var ScoreKeeper = require('../services/scorekeeper');
 var music = require('../services/music');
 var distance = require('../services/distance');
-var speed = require('../services/gameSpeed');
 
 function GameOver() {}
 
@@ -14,8 +13,6 @@ GameOver.prototype = {
   },
 
   create: function () {
-    distance.getDistance(this.game.time.now, speed.speedFactor);
-    
     this.titleText = this.game.add.bitmapText(this.game.world.centerX, 225, 'pixelation', 'GAME OVER', 48);
     this.titleText.updateTransform();
     this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
@@ -24,7 +21,7 @@ GameOver.prototype = {
     this.totalText.updateTransform();
     this.totalText.x = this.game.width / 2 - this.totalText.textWidth / 2;
 
-    this.distanceText = this.game.add.bitmapText(this.game.world.centerX, 425, 'pixelation', 'Distance: ' + (distance.distance) + ' meters', 32);
+    this.distanceText = this.game.add.bitmapText(this.game.world.centerX, 425, 'pixelation', 'Distance: ' + distance.getDistance() + ' meters', 32);
     this.distanceText.updateTransform();
     this.distanceText.x = this.game.width / 2 - this.distanceText.textWidth / 2;
 

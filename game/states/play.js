@@ -14,7 +14,7 @@ function Play() {}
 Play.prototype = {
 
   create: function() {
-    distance.setStart(this.game.time.now);
+    distance.setStart();
     
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = GRAVITY;

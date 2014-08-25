@@ -1,4 +1,5 @@
 "use strict";
+var distance = require('../services/distance');
 
 var Hud = function(game, x, y) {
 
@@ -15,6 +16,10 @@ var Hud = function(game, x, y) {
   this.livesText = this.game.add.bitmapText(x + 80, y + 20, 'pixelation', 'x2', 18);
   this.livesText.align = 'left';
   this.livesText.updateTransform();
+
+  this.distanceText = this.game.add.bitmapText(x + 150, y + 335, 'pixelation', distance.getDistance() + "m", 18);
+  this.distanceText.align = 'left';
+  this.distanceText.updateTransform();
 }
 
 Hud.prototype = {};
@@ -24,6 +29,8 @@ Hud.prototype.update = function() {
   this.livesText.updateTransform();
   this.scoreText.text = this.score;
   this.scoreText.updateTransform();
+  this.distanceText.text = distance.getDistance() + "m";
+  this.distanceText.updateTransform();
 }
 
 module.exports = Hud;
