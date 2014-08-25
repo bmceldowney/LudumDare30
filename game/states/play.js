@@ -6,6 +6,7 @@ var ScoreKeeper = require('../services/scorekeeper');
 var Rocket = require('../prefabs/rocket.js');
 var speed = require('../services/gameSpeed');
 var music = require('../services/music');
+var distance = require('../services/distance');
 var GRAVITY = 4000;
 
 function Play() {}
@@ -13,7 +14,8 @@ function Play() {}
 Play.prototype = {
 
   create: function() {
-
+    distance.setStart();
+    
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     this.game.physics.arcade.gravity.y = GRAVITY;
     speed.speedFactor = 1;
