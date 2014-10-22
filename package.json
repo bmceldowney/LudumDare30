@@ -1,6 +1,7 @@
 {
   "name": "ludum-dare-30",
   "private": true,
+  "main": "main.js",
   "scripts": {
     "postinstall": "bower install"
   },

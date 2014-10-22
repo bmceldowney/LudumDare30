@@ -50,6 +50,66 @@ Preload.prototype = {
     }
   },
   onLoadComplete: function() {
+  
+    // assume no line breaks
+    PIXI.BitmapText.prototype.measureWidth = function (text) {
+      var data = PIXI.BitmapText.fonts[this.fontName];
+      var charData;
+      var pos = new PIXI.Point();
+      var prevCharCode = null;
+      var charCode;
+      var scale = this.fontSize / data.size;
+      
+      for (var i = 0; i < text.length; i++) {
+        charCode = this.text.charCodeAt(i);
+        charData = data.chars[charCode];
+        if(!charData) continue;
+        
+        if(prevCharCode && charData[prevCharCode]) {
+          pos.x += charData.kerning[prevCharCode];
+        }
+      
+        pos.x += charData.xAdvance;
+        prevCharCode = charCode;
+      }
+
+      return pos.x * scale;
+    }
+
+    PIXI.BitmapText.prototype.measureWords = function (text) {
+      if (!text) text = this.text;
+
+      var words = text.split(' ');
+      var wordLengths = [];
+      
+      for (var i = 0; i < words.length; i++) {
+        wordLengths.push({ word: words[i], length: this.measureWidth(words[i]) });
+      }
+      
+      return wordLengths;
+    }
+    
+    PIXI.BitmapText.prototype.wrap = function (width, height) {
+      var words = this.measureWords(this.text);
+      var currentLine = words[0].word;
+      var lines = [];
+      
+      for (var i = 1; i < words.length; i++) {
+        var newLine = currentLine + ' ' + words[i].word;
+        var lineWidth = this.measureWidth(newLine);
+        if (lineWidth < width) {
+          currentLine = newLine;
+        } else {
+          lines.push(currentLine);
+          currentLine = words[i].word;
+        }
+      }
+      
+      lines.push(currentLine);
+      
+      this.text = lines.join('\r');
+    }
+    
     require('../services/distance').init(this.game);
     var music = require('../services/music');
     music.init(this.game);
@@ -57,23 +117,24 @@ Preload.prototype = {
     music.playIntroMusic();
     this.asset.kill();
 
-    this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', '"DIVIDED WE FAIL"', 48);
+    this.titleText = this.game.add.bitmapText(this.game.width * .5, this.game.height * .4, 'pixelation', 'herein lies a large amount of text that should be wrapping nicely when all is said and done.', 22);
+    this.titleText.wrap(500);
     this.titleText.updateTransform();
-    this.titleText.x = this.game.width / 2 - this.titleText.textWidth / 2;
+    this.titleText.x = 10;//this.game.width / 2 - this.titleText.textWidth / 2;
 
     this.ready = true;
 
-    this.game.time.events.loop(400, function() {
-      if (!!this.pressSpacebar) {
-        this.pressSpacebar.destroy();
-        this.pressSpacebar = null;
-      }
-      else {
+    //this.game.time.events.loop(400, function() {
+    //  if (!!this.pressSpacebar) {
+    //    this.pressSpacebar.destroy();
+    //    this.pressSpacebar = null;
+    //  }
+    //  else {
         this.pressSpacebar = this.game.add.bitmapText(this.game.width * .5, this.game.height * .67, 'pixelation', 'PRESS SPACEBAR TO PLAY', 22);
         this.pressSpacebar.updateTransform();
         this.pressSpacebar.x = this.game.width / 2 - this.pressSpacebar.textWidth / 2;
-      }
-    }, this);
+    //  }
+    //}, this);
   }
 };
 
