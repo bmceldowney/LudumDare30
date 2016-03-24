@@ -1,0 +1,70 @@
+{
+"frames": {
+    "blue-cloud_0": {
+        "frame": {"x":0,"y":0,"w":273,"h":99},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":273,"h":99},
+        "sourceSize": {"w":273,"h":99}
+    },
+    "blue-cloud_1": {
+        "frame": {"x":0,"y":114,"w":202,"h":86},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":202,"h":86},
+        "sourceSize": {"w":202,"h":86}
+    },
+    "blue-cloud_2": {
+        "frame": {"x":0,"y":208,"w":212,"h":80},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":212,"h":80},
+        "sourceSize": {"w":212,"h":80}
+    },
+    "blue-cloud_3": {
+        "frame": {"x":0,"y":298,"w":205,"h":85},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":205,"h":85},
+        "sourceSize": {"w":205,"h":85}
+    },
+    "blue-cloud_4": {
+        "frame": {"x":301,"y":3,"w":49,"h":26},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":49,"h":26},
+        "sourceSize": {"w":49,"h":26}
+    },
+    "blue-cloud_5": {
+        "frame": {"x":302,"y":68,"w":65,"h":33},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":65,"h":33},
+        "sourceSize": {"w":65,"h":33}
+    },
+    "blue-cloud_6": {
+        "frame": {"x":224,"y":129,"w":119,"h":51},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":119,"h":51},
+        "sourceSize": {"w":119,"h":51}
+    },
+    "blue-cloud_7": {
+        "frame": {"x":231,"y":208,"w":106,"h":40},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":106,"h":40},
+        "sourceSize": {"w":106,"h":40}
+    },
+    "blue-cloud_8": {
+        "frame": {"x":234,"y":265,"w":50,"h":23},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":50,"h":23},
+        "sourceSize": {"w":50,"h":23}
+    }
+},
+"meta": {
+    "image": "bkg_blue-clouds.png"
+}
+}

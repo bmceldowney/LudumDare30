@@ -1,0 +1,49 @@
+{
+    "frames": {
+        "helicopter01": {
+            "frame": {"x": 0, "y": 0, "w": 101, "h": 50},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0, "w": 101, "h": 50},
+            "sourceSize": {"w": 101, "h": 444}
+        },
+        "helicopter012": {
+            "frame": {"x": 0, "y": 50, "w": 101, "h": 50},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0, "w": 101, "h": 50},
+            "sourceSize": {"w": 101, "h": 444}
+        },
+        "helicopter03": {
+            "frame": {"x": 0, "y": 100, "w": 101, "h": 50},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0,"w": 101, "h": 50},
+            "sourceSize": {"w": 101, "h": 444}
+        },
+        "butterfly01": {
+            "frame": {"x": 0, "y": 150, "w": 101, "h": 98},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0, "w": 101, "h": 98},
+            "sourceSize": {"w": 101, "h": 444}
+        },
+        "butterfly02": {
+            "frame": {"x": 0, "y": 248, "w": 101, "h": 98},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0, "w": 101, "h": 98},
+            "sourceSize": {"w": 101, "h": 444}
+        },
+        "butterfly03": {
+            "frame": {"x": 0, "y": 346, "w": 101, "h": 98},
+            "rotated": false,
+            "trimmed": true,
+            "spriteSourceSize": {"x": 0, "y": 0, "w": 101, "h": 98},
+            "sourceSize": {"w": 101, "h": 444}
+        }
+    },
+    "meta": {
+        "image": "fliers.png"
+    }
+}

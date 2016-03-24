@@ -1,0 +1,28 @@
+{
+"frames": {
+    "plane": {
+        "frame": {"x":0,"y":0,"w":55,"h":13},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":55,"h":13},
+        "sourceSize": {"w":105,"h":20}
+    },
+    "bee01": {
+        "frame": {"x":55,"y":0,"w":26,"h":20},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":26,"h":20},
+        "sourceSize": {"w":105,"h":20}
+    },
+    "bee02": {
+        "frame": {"x":81,"y":0,"w":24,"h":20},
+        "rotated": false,
+        "trimmed": true,
+        "spriteSourceSize": {"x":0,"y":0,"w":24,"h":20},
+        "sourceSize": {"w":105,"h":20}
+    }
+},
+"meta": {
+	"image": "ouchies.png"
+}
+}
