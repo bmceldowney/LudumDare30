@@ -1,6 +1,8 @@
 Ludum Dare 30
 =============
 
+http://bmceldowney.github.io/LudumDare30/dist/
+
 What it is
 ----------
 
